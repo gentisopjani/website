@@ -44,6 +44,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
     display: block; 
     padding-top: var(--nav-bar-h);
   }
+>>>>>>> b0faf24d248be6294700b24a5b812bfa9c125ad7
 
 /* NAV */
 #nav { position: absolute; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; }
@@ -57,6 +58,15 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .nav-link { display: flex; align-items: center; gap: 5px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; color: var(--text-on-dark); letter-spacing: 0.2px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; cursor: pointer; }
 .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .nav-link svg { width: 12px; height: 12px; opacity: 0.7; flex-shrink: 0; }
+.dropdown-indicator { 
+  display: inline-block; 
+  width: 12px; 
+  height: 1px; 
+  background: currentColor; 
+  opacity: 0.7; 
+  margin-left: 4px; 
+  vertical-align: middle; 
+}
 .nav-cta-btn { padding: 9px 20px; background: var(--white); color: var(--teal); font-size: 13px; font-weight: 700; border-radius: var(--radius-sm); letter-spacing: 0.2px; transition: background 0.2s; margin-left: 8px; cursor: pointer; display: inline-block; border: none; font-family: var(--font); }
 .nav-cta-btn:hover { background: var(--bg-light); }
 .dropdown { position: relative; }
@@ -453,9 +463,9 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   .logo-desktop { display: none !important; }
   .logo-mobile { display: block !important; }
   .nav-logo img { 
-    height: 64px !important; 
+    height: 40px !important; 
     width: auto !important; 
-    max-height: 68px;
+    max-height: 44px;
     display: block;
   }
   .mobile-nav-toggle { 
@@ -596,6 +606,17 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   #nav .dropdown.dropdown-open .nav-link svg { 
     transform: rotate(180deg);
   }
+  #nav .dropdown-indicator {
+    width: 14px;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #nav .dropdown.dropdown-open .dropdown-indicator {
+    transform: rotate(180deg);
+  }
   #page-home .hero { 
     padding-top: calc(var(--nav-bar-h) + 16px);
     margin-top: 0;
@@ -683,22 +704,22 @@ body.menu-open {
         <span class="nav-link" onclick="showPage('listings')">Properties</span>
       </div>
       <div class="nav-item dropdown">
-        <span class="nav-link">Owners <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="nav-link">Owners <span class="dropdown-indicator"></span></span>
         <div class="dropdown-menu">
           <button class="dropdown-item" onclick="showPage('tenant-placement')">Tenant Placement</button>
           <button class="dropdown-item" onclick="showPage('property-management')">Property Management<small>Full-service management</small></button>
-          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Income Protection<small>Rental guarantee program for landlords</small></button>
+          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Guarantee<small>Rental guarantee program for landlords</small></button>
         </div>
       </div>
       <div class="nav-item dropdown">
-        <span class="nav-link">Tenants <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="nav-link">Tenants <span class="dropdown-indicator"></span></span>
         <div class="dropdown-menu">
           <button class="dropdown-item" onclick="showPage('become-tenant')">Become a Tenant<small>Find &amp; apply for a rental</small></button>
           <button class="dropdown-item" onclick="showPage('required-documents')">Required Documents<small>What you'll need to apply</small></button>
         </div>
       </div>
       <div class="nav-item dropdown">
-        <span class="nav-link">About Us <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="nav-link">About Us <span class="dropdown-indicator"></span></span>
         <div class="dropdown-menu">
           <button class="dropdown-item" onclick="showPage('why-northvale')">Why Northvale<small>Our philosophy &amp; approach</small></button>
           <button class="dropdown-item" onclick="showPage('how-it-works')">How It Works<small>Our 5-step process</small></button>
@@ -1485,7 +1506,7 @@ body.menu-open {
 </div>
 
 <!-- ============================================================
-     RENTAL INCOME PROTECTION PAGE
+     RENTAL GUARANTEE PAGE
      ============================================================ -->
 <div id="page-rental-income" class="page">
   <section class="page-hero">
