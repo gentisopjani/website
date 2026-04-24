@@ -447,8 +447,8 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         </div>
       </div>
       <div class="nav-item"><span class="nav-link" onclick="showPage('faq')">FAQ</span></div>
-      <div class="nav-item"><span class="nav-link" onclick="showPage('contact')">Contact</span></div>
-      <span class="nav-cta-btn" onclick="showPage('contact')">Book a Call</span>
+      <div class="nav-item"><span class="nav-link" onclick="bookACall()">Contact</span></div>
+      <span class="nav-cta-btn" onclick="bookACall()">Book a Call</span>
     </div>
     <div class="mobile-nav-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
   </div>
@@ -470,7 +470,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         <h1 class="hero-title"><span>Managing Property.</span><span>Protecting Income.</span></h1>
         <p class="hero-subtitle">Northvale provides structured, professional property management for residential owners across the Greater Toronto Area. We protect your investment and your income.</p>
         <div class="hero-buttons">
-          <span class="btn-primary" onclick="showPage('contact')">Book a Call</span>
+          <span class="btn-primary" onclick="bookACall()">Book a Call</span>
           <span class="btn-outline" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'})">Our Services</span>
         </div>
       </div>
@@ -674,7 +674,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
       <p class="cta-eyebrow">Get Started Today</p>
       <h2 class="cta-heading">Ready to Protect Your<br>Rental Investment?</h2>
       <p class="cta-body">Book a call with a Northvale property management expert and find out how we can help.</p>
-      <span class="btn-primary" onclick="showPage('contact')">Book a Call</span>
+      <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
 
@@ -695,7 +695,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         <span onclick="showPage('how-it-works')">How It Works</span>
         <span onclick="showPage('areas')">Areas We Serve</span>
         <span onclick="showPage('faq')">FAQ</span>
-        <span onclick="showPage('contact')">Contact</span>
+        <span onclick="bookACall()">Contact</span>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Services</div>
@@ -775,13 +775,13 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     <div class="container">
       <h2 class="cta-heading">Ready to Work With Northvale?</h2>
       <p class="cta-body">Book a call and discover how a more structured approach to property management can work for you.</p>
-      <span class="btn-primary" onclick="showPage('contact')">Book a Call</span>
+      <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -830,13 +830,13 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     <div class="container">
       <h2 class="cta-heading">Start the Process Today</h2>
       <p class="cta-body">Book a call and take the first step toward professionally managed, protected rental income.</p>
-      <span class="btn-primary" onclick="showPage('contact')">Book a Call</span>
+      <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -884,13 +884,13 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     <div class="container">
       <h2 class="cta-heading">Managing Property in the GTA?</h2>
       <p class="cta-body">Book a call to discuss your property and find out how Northvale can help.</p>
-      <span class="btn-primary" onclick="showPage('contact')">Book a Call</span>
+      <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 555-1234</span><span>info@northvalepm.com</span></div>
     </div>
@@ -955,13 +955,13 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     <div class="container">
       <h2 class="cta-heading">Still Have Questions?</h2>
       <p class="cta-body">Book a call and speak directly with a member of our property management team.</p>
-      <span class="btn-primary" onclick="showPage('contact')">Book a Call</span>
+      <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 555-1234</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1096,7 +1096,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1125,7 +1125,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
           <p class="section-body">Our Tenant Placement service handles the entire process of finding and securing a qualified tenant for your property. From professional listing and marketing through to lease execution, we manage every step.</p>
           <p class="section-body">This is a standalone, one-time service. You're not required to sign up for ongoing management — though many clients choose to add management after experiencing our process.</p>
           <div class="stat-block"><div class="stat-num">1,100+</div><div class="stat-label">Tenants Successfully Placed</div></div>
-          <span class="btn-primary-teal" onclick="showPage('contact')">Book a Call</span>
+          <span class="btn-primary-teal" onclick="bookACall()">Book a Call</span>
         </div>
       </div>
     </div>
@@ -1153,11 +1153,11 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
       </div>
     </div>
   </section>
-  <section class="cta-section"><div class="container"><h2 class="cta-heading">Ready to Find Your Next Great Tenant?</h2><p class="cta-body">Book a call to discuss your property and get started with our tenant placement service.</p><span class="btn-primary" onclick="showPage('contact')">Book a Call</span></div></section>
+  <section class="cta-section"><div class="container"><h2 class="cta-heading">Ready to Find Your Next Great Tenant?</h2><p class="cta-body">Book a call to discuss your property and get started with our tenant placement service.</p><span class="btn-primary" onclick="bookACall()">Book a Call</span></div></section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1186,7 +1186,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
           <p class="section-body">Northvale handles every aspect of managing your rental property — from tenant communication and rent collection to maintenance coordination, inspections, and financial reporting.</p>
           <p class="section-body">Our management plans are designed to give you complete visibility into your property's performance while removing the operational burden entirely from your plate.</p>
           <div class="stat-block"><div class="stat-num">$89</div><div class="stat-label">Starting monthly flat fee</div></div>
-          <span class="btn-primary-teal" onclick="showPage('contact')">Book a Call</span>
+          <span class="btn-primary-teal" onclick="bookACall()">Book a Call</span>
         </div>
       </div>
     </div>
@@ -1214,11 +1214,11 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
       </div>
     </div>
   </section>
-  <section class="cta-section"><div class="container"><h2 class="cta-heading">Let Northvale Manage Your Property</h2><p class="cta-body">Book a call to discuss your property and find the right management plan for your situation.</p><span class="btn-primary" onclick="showPage('contact')">Book a Call</span></div></section>
+  <section class="cta-section"><div class="container"><h2 class="cta-heading">Let Northvale Manage Your Property</h2><p class="cta-body">Book a call to discuss your property and find the right management plan for your situation.</p><span class="btn-primary" onclick="bookACall()">Book a Call</span></div></section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1246,7 +1246,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
           <h2 class="section-heading">Your Income, Protected.</h2>
           <p class="section-body">Even with the best tenant screening, unexpected circumstances can lead to missed rent payments. Northvale's Rental Guarantee plan provides a financial safety net so your income continues even when your tenant doesn't pay.</p>
           <p class="section-body">Available as an add-on to our Property Management service, this plan covers you for rent arrears, legal expenses, and eviction costs.</p>
-          <span class="btn-primary-teal" onclick="showPage('contact')">Book a Call</span>
+          <span class="btn-primary-teal" onclick="bookACall()">Book a Call</span>
         </div>
       </div>
     </div>
@@ -1275,11 +1275,11 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
       </div>
     </div>
   </section>
-  <section class="cta-section"><div class="container"><h2 class="cta-heading">Protect Your Rental Income Today</h2><p class="cta-body">Book a call to learn more about our income protection plans and find the right coverage for your property.</p><span class="btn-primary" onclick="showPage('contact')">Book a Call</span></div></section>
+  <section class="cta-section"><div class="container"><h2 class="cta-heading">Protect Your Rental Income Today</h2><p class="cta-body">Book a call to learn more about our income protection plans and find the right coverage for your property.</p><span class="btn-primary" onclick="bookACall()">Book a Call</span></div></section>
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1365,7 +1365,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
             </div>
             <div class="listing-rent">$2,100 <span>/ month</span></div>
             <div class="listing-avail">Available: Immediately</div>
-            <button class="listing-cta" onclick="showPage('contact')">Book a Viewing</button>
+            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
           </div>
         </div>
         <!-- LISTING 1 — END -->
@@ -1420,7 +1420,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
             </div>
             <div class="listing-rent">$2,100 <span>/ month</span></div>
             <div class="listing-avail">Available: June 1, 2026</div>
-            <button class="listing-cta" onclick="showPage('contact')">Book a Viewing</button>
+            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
           </div>
         </div>
         <!-- LISTING 2 — END -->
@@ -1492,7 +1492,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
             </div>
             <div class="listing-rent">$2,200 <span>/ month</span></div>
             <div class="listing-avail">Available: June 1, 2026</div>
-            <button class="listing-cta" onclick="showPage('contact')">Book a Viewing</button>
+            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
           </div>
         </div>
         <!-- LISTING 3 — END -->
@@ -1507,7 +1507,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         <p class="section-eyebrow">Don't See What You're Looking For?</p>
         <h3 style="font-size:20px;font-weight:800;color:var(--text-dark);margin-bottom:10px;">New Properties Come Up Regularly</h3>
         <p style="font-size:14.5px;color:var(--text-body);max-width:480px;margin:0 auto 22px;line-height:1.65;">Let us know your requirements and we'll reach out as soon as a matching unit becomes available across Toronto and the GTA.</p>
-        <span class="btn-primary-teal" onclick="showPage('contact')">Send Us Your Requirements</span>
+        <span class="btn-primary-teal" onclick="bookACall()">Send Us Your Requirements</span>
       </div>
 
     </div>
@@ -1516,7 +1516,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('listings')">Current Listings</span><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
     </div>
@@ -1539,7 +1539,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         <p style="font-size:16px;color:var(--text-body);line-height:1.75;margin-bottom:32px;">We manage quality residential properties across Toronto and the GTA, and we take pride in responding quickly, communicating clearly, and treating every applicant with respect.</p>
         <div style="display:flex;gap:14px;flex-wrap:wrap;">
           <span class="btn-primary-teal" onclick="showPage('required-documents')">See Required Documents</span>
-          <span class="btn-outline-teal" onclick="showPage('contact')">Contact Us</span>
+          <span class="btn-outline-teal" onclick="bookACall()">Contact Us</span>
         </div>
       </div>
       <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#1a6070 0%,#14454F 100%);display:flex;align-items:center;justify-content:center;position:relative;">
@@ -1677,14 +1677,14 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
       <p class="cta-eyebrow">Ready to Find Your Home?</p>
       <h2 class="cta-heading">Let's Get You Started</h2>
       <p class="cta-body">Reach out to our leasing team today and we'll help you find the right property for your needs across Toronto and the GTA.</p>
-      <span class="btn-primary" onclick="showPage('contact')">Contact Our Leasing Team</span>
+      <span class="btn-primary" onclick="bookACall()">Contact Our Leasing Team</span>
     </div>
   </section>
 
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
     </div>
@@ -1777,7 +1777,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
     </div>
@@ -1872,7 +1872,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
     </div>
@@ -1943,7 +1943,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
     </div>
@@ -1977,6 +1977,16 @@ function showPage(id) {
   if (links && links.style.display === 'flex') {
     links.style.cssText = '';
   }
+}
+
+function bookACall() {
+  showPage('home');
+  setTimeout(() => {
+    const heroForm = document.getElementById('heroForm');
+    if (heroForm) {
+      heroForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 100);
 }
 
 function toggleFaq(btn) {
@@ -2280,4 +2290,5 @@ function goToSlide(galleryId, index) {
 </script>
 </body>
 </html>
+
 
