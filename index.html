@@ -40,8 +40,8 @@ ul { list-style: none; }
 button { font-family: var(--font); cursor: pointer; border: none; background: none; padding: 0; margin: 0; }
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
 .section-py { padding: var(--section-py) 0; }
-.page { display: none; }
-.page.active { display: block; }
+  .page { display: none; }
+  .page.active { display: block; }
 
 /* NAV */
 #nav { position: absolute; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; }
@@ -448,9 +448,11 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     min-height: 56px;
     padding: 0 8px;
   }
-  .nav-logo img { 
-    height: 40px !important; 
-    width: auto !important; 
+  .logo-desktop { display: none !important; }
+  .logo-mobile { display: block !important; }
+  .nav-logo img {
+    height: 40px !important;
+    width: auto !important;
     max-height: 44px;
     display: block;
   }
@@ -593,7 +595,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     transform: rotate(180deg);
   }
   #page-home .hero { 
-    padding-top: calc(var(--nav-bar-h) + 0px);
+    padding-top: calc(var(--nav-bar-h) + 16px);
     margin-top: 0;
   }
   .hero-content { 
@@ -670,7 +672,8 @@ body.menu-open {
 <nav id="nav" class="nav--home">
   <div class="nav-inner">
     <div class="nav-logo" onclick="showPage('home')">
-      <img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:100px;width:auto;display:block;">
+      <img src="./assets/northvale-logo.png" alt="Northvale Property Management" class="logo-desktop" style="height:48px;width:auto;display:block;">
+      <img src="./assets/northvale-logo-mobile.png" alt="Northvale Property Management" class="logo-mobile" style="height:40px;width:auto;display:none;">
     </div>
     <button type="button" class="mobile-nav-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links">
@@ -680,9 +683,9 @@ body.menu-open {
       <div class="nav-item dropdown">
         <span class="nav-link">Owners <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <div class="dropdown-menu">
-          <button class="dropdown-item" onclick="showPage('tenant-placement')">Tenant Placement<small>Expert screening &amp; placement</small></button>
+          <button class="dropdown-item" onclick="showPage('tenant-placement')">Tenant Placement</button>
           <button class="dropdown-item" onclick="showPage('property-management')">Property Management<small>Full-service management</small></button>
-          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Income Protection<small>Rental guarantee program for landlords</small></button>
+          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Guarantee<small>Rental guarantee program for landlords</small></button>
         </div>
       </div>
       <div class="nav-item dropdown">
