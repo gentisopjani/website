@@ -1058,7 +1058,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
           <div class="form-row">
             <div class="form-group">
               <label>City <span class="req">*</span></label>
-              <select>
+              <select name="city" required>
                 <option value="">Select City</option>
                 <option>Toronto</option>
                 <option>Mississauga</option>
@@ -1077,7 +1077,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
             </div>
             <div class="form-group">
               <label>Are You A Tenant or Owner? <span class="req">*</span></label>
-              <select>
+              <select name="type" required>
                 <option value="">Select Type</option>
                 <option>Owner</option>
                 <option>Tenant</option>
@@ -1955,6 +1955,24 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
      JAVASCRIPT
      ============================================================ -->
 <script>
+const pageRoutes = {
+  '/': 'home',
+  '/why-northvale': 'why-northvale',
+  '/how-it-works': 'how-it-works',
+  '/areas': 'areas',
+  '/faq': 'faq',
+  '/contact': 'contact',
+  '/tenant-placement': 'tenant-placement',
+  '/property-management': 'property-management',
+  '/rental-income': 'rental-income',
+  '/properties': 'listings',
+  '/listings': 'listings',
+  '/become-tenant': 'become-tenant',
+  '/required-documents': 'required-documents',
+  '/privacy-policy': 'privacy-policy',
+  '/terms': 'terms'
+};
+
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + id);
@@ -1971,6 +1989,13 @@ function showPage(id) {
       nav.style.background = 'var(--teal)';
       nav.style.top = '0';
     }
+    // Update URL if not already correct
+    let targetPath = Object.keys(pageRoutes).find(path => pageRoutes[path] === id) || '/';
+    if (window.location.pathname !== targetPath && targetPath !== '/') {
+      window.history.pushState({ page: id }, '', targetPath);
+    } else if (id === 'home' && window.location.pathname !== '/') {
+      window.history.pushState({ page: id }, '', '/');
+    }
   }
   // Close mobile nav if open
   const links = document.querySelector('.nav-links');
@@ -1978,6 +2003,24 @@ function showPage(id) {
     links.style.cssText = '';
   }
 }
+
+function initRouter() {
+  const path = window.location.pathname;
+  const pageId = pageRoutes[path] || 'home';
+  showPage(pageId);
+}
+
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.page) {
+    showPage(e.state.page);
+  } else {
+    initRouter();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  initRouter();
+});
 
 function bookACall() {
   showPage('home');
