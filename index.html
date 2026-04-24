@@ -29,10 +29,11 @@
   --radius-lg:    14px;
   --max-w:        1200px;
   --section-py:   80px;
+  --nav-bar-h:    56px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font); color: var(--text-dark); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: var(--font); color: var(--text-dark); background: var(--white); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
@@ -44,7 +45,9 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 
 /* NAV */
 #nav { position: absolute; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; }
-.nav-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 80px; }
+#nav.nav--inner { position: sticky; top: 0; background: var(--teal); z-index: 500; box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+#nav.nav--home { background: transparent; }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 80px; position: relative; z-index: 2; }
 .nav-logo { font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: -0.3px; line-height: 1.2; cursor: pointer; }
 .nav-logo span { display: block; font-weight: 500; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; margin-top: 2px; }
 .nav-links { display: flex; align-items: center; gap: 6px; }
@@ -60,8 +63,12 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .dropdown-item { display: block; padding: 9px 14px; font-size: 13.5px; font-weight: 600; color: var(--text-dark); border-radius: var(--radius-sm); transition: background 0.15s; cursor: pointer; border: none; background: none; width: 100%; text-align: left; font-family: var(--font); }
 .dropdown-item:hover { background: var(--bg-light); }
 .dropdown-item small { display: block; font-size: 11.5px; font-weight: 400; color: var(--text-body); margin-top: 1px; }
-.mobile-nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
-.mobile-nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+.mobile-nav-toggle { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; padding: 10px 12px; margin: 0 -8px 0 0; min-width: 44px; min-height: 44px; border-radius: var(--radius-sm); background: transparent; -webkit-tap-highlight-color: transparent; transition: background 0.2s; }
+.mobile-nav-toggle:hover { background: rgba(255,255,255,0.08); }
+.mobile-nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: transform 0.25s ease, opacity 0.25s ease; transform-origin: center; }
+.mobile-nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mobile-nav-toggle.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.mobile-nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* BUTTONS */
 .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: var(--white); color: var(--teal); font-size: 14px; font-weight: 700; border-radius: var(--radius-sm); letter-spacing: 0.2px; transition: background 0.2s, transform 0.15s; cursor: pointer; border: none; font-family: var(--font); }
@@ -108,9 +115,12 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .services-header .section-heading { color: var(--white); }
 .services-header .section-body { color: var(--text-on-dark); max-width: 560px; margin: 0 auto; }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.service-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg); padding: 34px 28px; display: flex; flex-direction: column; transition: background 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease; will-change: transform; }
+.service-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-lg); padding: 34px 28px; display: flex; flex-direction: column; transition: background 0.25s ease, border-color 0.25s ease, transform 0.28s ease, box-shadow 0.28s ease; }
 .service-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.22); box-shadow: 0 24px 48px rgba(0,0,0,0.22); }
-.services-grid .service-card:hover { transform: scale(1.05); }
+.services-grid .service-card:hover { transform: none; }
+@media (hover: hover) and (pointer: fine) {
+  .services-grid .service-card:hover { transform: scale(1.05); }
+}
 .service-icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 .service-icon svg { width: 22px; height: 22px; }
 .service-card-title { font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.3px; margin-bottom: 4px; }
@@ -127,7 +137,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .plans-section { background: var(--white); }
 .plans-header { text-align: center; margin-bottom: 16px; }
 .plans-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 36px; }
-.plan-tab { padding: 8px 20px; font-size: 13px; font-weight: 600; border-radius: 20px; border: 1.5px solid var(--border); color: var(--text-body); background: var(--white); cursor: pointer; transition: all 0.18s; }
+.plan-tab { padding: 8px 20px; font-size: 13px; font-weight: 600; border-radius: 20px; border: 1.5px solid var(--border); color: var(--text-body); background: var(--white); cursor: pointer; transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease; }
 .plan-tab.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
 .plan-card { max-width: 780px; margin: 0 auto; background: var(--bg-light); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 44px; transition: box-shadow 0.25s, transform 0.25s; }
 .plan-card:hover { box-shadow: 0 16px 40px rgba(20,69,79,0.13); transform: translateY(-4px); }
@@ -286,21 +296,24 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
    ============================================================ */
 .fade-up {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(16px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
 .service-card.fade-up.visible {
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.28s ease, box-shadow 0.28s ease;
   transition-delay: 0s;
 }
-.fade-up.delay-1 { transition-delay: 0.10s; }
-.fade-up.delay-2 { transition-delay: 0.20s; }
-.fade-up.delay-3 { transition-delay: 0.30s; }
-.fade-up.delay-4 { transition-delay: 0.40s; }
+.fade-up.delay-1 { transition-delay: 0.05s; }
+.fade-up.delay-2 { transition-delay: 0.10s; }
+.fade-up.delay-3 { transition-delay: 0.14s; }
+.fade-up.delay-4 { transition-delay: 0.18s; }
+@media (max-width: 768px) {
+  .fade-up.delay-1, .fade-up.delay-2, .fade-up.delay-3, .fade-up.delay-4 { transition-delay: 0s; }
+}
 
 
 /* HERO INLINE FORM */
@@ -343,6 +356,10 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 .listings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .listing-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; }
 .listing-card:hover { box-shadow: 0 12px 36px rgba(20,69,79,0.12); transform: translateY(-4px); }
+@media (max-width: 768px) {
+  .listing-card { transition: box-shadow 0.2s ease; }
+  .listing-card:hover { transform: none; }
+}
 .listing-img { width: 100%; height: 200px; object-fit: cover; display: block; background: #d0dfe0; }
 .listing-img-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #1a6070, #14454F); display: flex; align-items: center; justify-content: center; }
 .listing-body { padding: 22px 24px 26px; }
@@ -390,22 +407,258 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 @media (max-width: 768px) {
-  :root { --section-py: 56px; }
-  .nav-links { display: none; }
-  .mobile-nav-toggle { display: flex; }
-  .hero-content { padding: 100px 24px 60px; }
-  .hero-title { font-size: 36px; }
+  :root { --section-py: 52px; --nav-bar-h: 56px; }
+  #nav,
+  #nav.nav--home,
+  #nav.nav--inner {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    padding: 0;
+    margin: 0;
+    background: #14454F;
+    border-bottom: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    isolation: isolate;
+    will-change: transform;
+  }
+  #nav.nav--home {
+    background: #14454F;
+  }
+  .nav-inner {
+    height: var(--nav-bar-h);
+    min-height: var(--nav-bar-h);
+    max-width: 100%;
+    padding: 0 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { 
+    flex: 0 0 auto; 
+    margin-right: auto; 
+    align-self: center;
+    z-index: 9999;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    padding: 0 8px;
+  }
+  .nav-logo img { 
+    height: 40px !important; 
+    width: auto !important; 
+    max-height: 44px;
+    display: block;
+  }
+  .mobile-nav-toggle { 
+    display: flex; 
+    flex: 0 0 auto; 
+    z-index: 9999;
+    margin-left: 8px;
+  }
+  .nav-links {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: var(--nav-bar-h);
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    height: calc(100vh - var(--nav-bar-h));
+    margin: 0;
+    padding: 16px 16px calc(24px + env(safe-area-inset-bottom, 16px));
+    gap: 6px;
+    background: #14454F;
+    z-index: 9997;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    box-shadow: none;
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.32s linear;
+    will-change: transform;
+  }
+  #nav.nav-menu-open .nav-links {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+  #nav .nav-item { 
+    width: 100%;
+    flex-shrink: 0;
+  }
+  #nav .nav-link {
+    width: 100%;
+    padding: 14px 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    color: rgba(255,255,255,0.95);
+    min-height: 48px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  #nav .nav-link:active { background: rgba(255,255,255,0.12); }
+  #nav .nav-link:hover { background: rgba(255,255,255,0.1); color: #FFF; }
+  #nav .nav-link svg {
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #nav .nav-cta-btn {
+    margin: 8px 0 0;
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 15px;
+    min-height: 48px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.95);
+    color: #14454F;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    transition: background 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font);
+  }
+  #nav .nav-cta-btn:active { background: rgba(255,255,255,0.88); }
+  #nav .dropdown .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: rgba(0,0,0,0.2);
+    min-width: unset;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    transition: max-height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s ease;
+    will-change: max-height;
+  }
+  #nav .dropdown.dropdown-open .dropdown-menu {
+    max-height: 500px;
+    padding: 6px 0;
+  }
+  #nav .dropdown-item {
+    padding: 13px 16px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.92);
+    border-radius: var(--radius-sm);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #nav .dropdown-item small { 
+    display: block;
+    color: rgba(255,255,255,0.65); 
+    font-size: 13px;
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  #nav .dropdown-item:active { background: rgba(255,255,255,0.12); }
+  #nav .dropdown-item:hover { background: rgba(255,255,255,0.1); }
+  #nav .dropdown .nav-link svg { 
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-left: auto;
+  }
+  #nav .dropdown.dropdown-open .nav-link svg { 
+    transform: rotate(180deg);
+  }
+  #page-home .hero { 
+    padding-top: calc(var(--nav-bar-h) + 0px);
+    margin-top: 0;
+  }
+  .hero-content { 
+    padding: 32px 20px 48px; 
+    margin-top: 0;
+  }
+  .hero-title { 
+    font-size: clamp(28px, 7vw, 36px); 
+  }
+  .page-hero { 
+    padding: calc(var(--nav-bar-h) + 32px) 20px 48px; 
+  }
   .plan-card-header { flex-direction: column; gap: 16px; }
   .plan-features-grid, .tp-checklist, .included-grid, .benefits-grid { grid-template-columns: 1fr; }
   .city-grid, .areas-page-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .plan-card { padding: 24px; }
-  .tp-container { padding: 32px 24px; }
+  .tp-container { padding: 28px 20px; }
   .values-grid { grid-template-columns: 1fr !important; }
-  .nav-logo img { height: 100px !important; width: auto !important; }
   .footer-logo img { height: 120px !important; width: auto !important; }
-  .nav-inner { padding: 0 18px; }
+  .container { padding: 0 20px; }
+  .btn-primary, .btn-outline, .btn-primary-teal, .btn-outline-teal { 
+    min-height: 48px; 
+    padding: 12px 20px; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.2s ease;
+  }
+  .btn-primary:active, .btn-primary-teal:active, .btn-outline:active, .btn-outline-teal:active {
+    transform: scale(0.98);
+  }
+  .services-grid .service-card { transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+  .faq-answer { transition: max-height 0.28s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .plans-tabs { flex-wrap: wrap; justify-content: flex-start; gap: 10px; }
+  .plan-tab { min-height: 44px; padding: 10px 16px; }
+}
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .nav-links, #nav .dropdown .dropdown-menu, .faq-answer { 
+    transition: none !important; 
+  }
+}
+@media (max-width: 480px) {
+  :root { --nav-bar-h: 56px; }
+  .hero-content { padding-left: 16px; padding-right: 16px; }
+  .page-hero { padding-left: 16px; padding-right: 16px; }
+  .container { padding: 0 16px; }
+  .nav-inner { padding: 0 12px; }
+  .nav-logo img { height: 38px !important; }
+  .mobile-nav-toggle span { width: 20px; }
+}
+html.menu-open { 
+  overflow: hidden !important; 
+  position: fixed;
+  width: 100%;
+}
+body.menu-open { 
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 </style>
 </head>
@@ -414,11 +667,12 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 <!-- ============================================================
      NAVIGATION
      ============================================================ -->
-<nav id="nav">
+<nav id="nav" class="nav--home">
   <div class="nav-inner">
     <div class="nav-logo" onclick="showPage('home')">
       <img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:100px;width:auto;display:block;">
     </div>
+    <button type="button" class="mobile-nav-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links">
       <div class="nav-item">
         <span class="nav-link" onclick="showPage('listings')">Properties</span>
@@ -428,7 +682,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         <div class="dropdown-menu">
           <button class="dropdown-item" onclick="showPage('tenant-placement')">Tenant Placement<small>Expert screening &amp; placement</small></button>
           <button class="dropdown-item" onclick="showPage('property-management')">Property Management<small>Full-service management</small></button>
-          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Guarantee<small>Protect your rental income</small></button>
+          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Income Protection<small>Rental guarantee program for landlords</small></button>
         </div>
       </div>
       <div class="nav-item dropdown">
@@ -447,10 +701,9 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         </div>
       </div>
       <div class="nav-item"><span class="nav-link" onclick="showPage('faq')">FAQ</span></div>
-      <div class="nav-item"><span class="nav-link" onclick="bookACall()">Contact</span></div>
+      <div class="nav-item"><span class="nav-link" onclick="showPage('contact')">Contact</span></div>
       <span class="nav-cta-btn" onclick="bookACall()">Book a Call</span>
     </div>
-    <div class="mobile-nav-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
@@ -695,7 +948,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
         <span onclick="showPage('how-it-works')">How It Works</span>
         <span onclick="showPage('areas')">Areas We Serve</span>
         <span onclick="showPage('faq')">FAQ</span>
-        <span onclick="bookACall()">Contact</span>
+        <span onclick="showPage('contact')">Contact</span>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Services</div>
@@ -781,7 +1034,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -836,7 +1089,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -890,7 +1143,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 555-1234</span><span>info@northvalepm.com</span></div>
     </div>
@@ -961,7 +1214,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 555-1234</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1096,7 +1349,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1157,7 +1410,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1218,7 +1471,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1279,7 +1532,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
     </div>
@@ -1516,7 +1769,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('listings')">Current Listings</span><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
     </div>
@@ -1684,7 +1937,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
     </div>
@@ -1777,7 +2030,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
     </div>
@@ -1872,7 +2125,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
     </div>
@@ -1943,7 +2196,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   <footer>
     <div class="footer-grid">
       <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="bookACall()">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
       <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
       <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
     </div>
@@ -1973,34 +2226,90 @@ const pageRoutes = {
   '/terms': 'terms'
 };
 
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('page-' + id);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    const nav = document.getElementById('nav');
-    if (id === 'home') {
-      nav.style.position = 'absolute';
-      nav.style.top = '';
-      nav.style.background = 'transparent';
-    } else {
-      nav.style.position = 'sticky';
-      nav.style.background = 'var(--teal)';
-      nav.style.top = '0';
-    }
-    // Update URL if not already correct
-    let targetPath = Object.keys(pageRoutes).find(path => pageRoutes[path] === id) || '/';
-    if (window.location.pathname !== targetPath && targetPath !== '/') {
-      window.history.pushState({ page: id }, '', targetPath);
-    } else if (id === 'home' && window.location.pathname !== '/') {
-      window.history.pushState({ page: id }, '', '/');
-    }
+function closeMobileMenu() {
+  var nav = document.getElementById('nav');
+  if (!nav || !nav.classList.contains('nav-menu-open')) return;
+  
+  nav.classList.remove('nav-menu-open');
+  document.documentElement.classList.remove('menu-open');
+  document.body.classList.remove('menu-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+  
+  var scrollTop = parseInt(document.body.getAttribute('data-scroll-y') || '0', 10);
+  document.body.removeAttribute('data-scroll-y');
+  
+  if (scrollTop > 0) {
+    setTimeout(function() {
+      window.scrollTo(0, scrollTop);
+    }, 0);
   }
-  // Close mobile nav if open
-  const links = document.querySelector('.nav-links');
-  if (links && links.style.display === 'flex') {
-    links.style.cssText = '';
+  
+  var t = document.getElementById('mobileToggle');
+  if (t) {
+    t.classList.remove('is-open');
+    t.setAttribute('aria-expanded', 'false');
+    t.setAttribute('aria-label', 'Open menu');
+  }
+  document.querySelectorAll('#nav .dropdown').forEach(function(d) { 
+    d.classList.remove('dropdown-open'); 
+  });
+}
+
+function openMobileMenu() {
+  var nav = document.getElementById('nav');
+  var t = document.getElementById('mobileToggle');
+  if (!nav || !t || !window.matchMedia('(max-width: 768px)').matches) return;
+  
+  var scrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.setAttribute('data-scroll-y', String(scrollY));
+  
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + scrollY + 'px';
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+  
+  document.documentElement.classList.add('menu-open');
+  document.body.classList.add('menu-open');
+  nav.classList.add('nav-menu-open');
+  
+  t.classList.add('is-open');
+  t.setAttribute('aria-expanded', 'true');
+  t.setAttribute('aria-label', 'Close menu');
+}
+
+function toggleMobileMenu() {
+  var nav = document.getElementById('nav');
+  if (!nav) return;
+  if (nav.classList.contains('nav-menu-open')) closeMobileMenu();
+  else openMobileMenu();
+}
+
+function showPage(id) {
+  closeMobileMenu();
+  const target = document.getElementById('page-' + id);
+  if (!target) return;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const nav = document.getElementById('nav');
+  if (nav) {
+    nav.classList.toggle('nav--home', id === 'home');
+    nav.classList.toggle('nav--inner', id !== 'home');
+  }
+  let targetPath = Object.keys(pageRoutes).find(path => pageRoutes[path] === id) || '/';
+  if (window.location.pathname !== targetPath && targetPath !== '/') {
+    window.history.pushState({ page: id }, '', targetPath);
+  } else if (id === 'home' && window.location.pathname !== '/') {
+    window.history.pushState({ page: id }, '', '/');
   }
 }
 
@@ -2189,16 +2498,35 @@ function initPlans() {
 }
 initPlans();
 
-document.getElementById('mobileToggle').addEventListener('click', function() {
-  const links = document.querySelector('.nav-links');
-  if (links.style.display === 'flex') {
-    links.style.cssText = '';
-  } else {
-    links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:80px;left:0;right:0;background:var(--teal);padding:16px 24px;gap:4px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,0.2)';
-  }
+document.getElementById('mobileToggle').addEventListener('click', function(e) {
+  e.stopPropagation();
+  toggleMobileMenu();
 });
 
-showPage('home');
+document.getElementById('nav').addEventListener('click', function(ev) {
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+  if (!document.getElementById('nav').classList.contains('nav-menu-open')) return;
+  if (ev.target.closest('button.dropdown-item')) return;
+  if (ev.target.closest('.nav-cta-btn')) return;
+  if (ev.target.closest('.nav-link[onclick]')) return;
+  var drop = ev.target.closest('.dropdown');
+  if (!drop) return;
+  var trigger = ev.target.closest('.dropdown > .nav-link');
+  if (!trigger) return;
+  ev.preventDefault();
+  document.querySelectorAll('#nav .dropdown').forEach(function(x) {
+    if (x !== drop) x.classList.remove('dropdown-open');
+  });
+  drop.classList.toggle('dropdown-open');
+});
+
+window.addEventListener('resize', function() {
+  if (!window.matchMedia('(max-width: 768px)').matches) closeMobileMenu();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeMobileMenu();
+});
 
 // ============================================================
 // SCROLL FADE-UP — IntersectionObserver
