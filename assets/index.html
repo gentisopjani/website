@@ -40,21 +40,17 @@ ul { list-style: none; }
 button { font-family: var(--font); cursor: pointer; border: none; background: none; padding: 0; margin: 0; }
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
 .section-py { padding: var(--section-py) 0; }
-<<<<<<< HEAD
   .page.active { 
     display: block; 
     padding-top: var(--nav-bar-h);
   }
-=======
-.page { display: none; }
-.page.active { display: block; }
 >>>>>>> b0faf24d248be6294700b24a5b812bfa9c125ad7
 
 /* NAV */
 #nav { position: absolute; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; }
 #nav.nav--inner { position: sticky; top: 0; background: var(--teal); z-index: 500; box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
 #nav.nav--home { background: transparent; }
-.nav-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; min-height: 80px; height: auto; position: relative; z-index: 2; }
+.nav-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 80px; position: relative; z-index: 2; }
 .nav-logo { font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: -0.3px; line-height: 1.2; cursor: pointer; }
 .nav-logo span { display: block; font-weight: 500; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.75; margin-top: 2px; }
 .nav-links { display: flex; align-items: center; gap: 6px; }
@@ -62,6 +58,15 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .nav-link { display: flex; align-items: center; gap: 5px; padding: 8px 14px; font-size: 13.5px; font-weight: 600; color: var(--text-on-dark); letter-spacing: 0.2px; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; cursor: pointer; }
 .nav-link:hover { color: var(--white); background: rgba(255,255,255,0.08); }
 .nav-link svg { width: 12px; height: 12px; opacity: 0.7; flex-shrink: 0; }
+.dropdown-indicator { 
+  display: inline-block; 
+  width: 12px; 
+  height: 1px; 
+  background: currentColor; 
+  opacity: 0.7; 
+  margin-left: 4px; 
+  vertical-align: middle; 
+}
 .nav-cta-btn { padding: 9px 20px; background: var(--white); color: var(--teal); font-size: 13px; font-weight: 700; border-radius: var(--radius-sm); letter-spacing: 0.2px; transition: background 0.2s; margin-left: 8px; cursor: pointer; display: inline-block; border: none; font-family: var(--font); }
 .nav-cta-btn:hover { background: var(--bg-light); }
 .dropdown { position: relative; }
@@ -455,21 +460,12 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
     min-height: 56px;
     padding: 0 8px;
   }
-<<<<<<< HEAD
   .logo-desktop { display: none !important; }
   .logo-mobile { display: block !important; }
   .nav-logo img { 
-    height: 64px !important; 
+    height: 40px !important; 
     width: auto !important; 
-    max-height: 68px;
-=======
-  .logo-desktop { display: none !important; }
-  .logo-mobile { display: block !important; }
-  .nav-logo img {
-    height: 50px !important;
-    width: auto !important;
-    max-height: 56px;
->>>>>>> b0faf24d248be6294700b24a5b812bfa9c125ad7
+    max-height: 44px;
     display: block;
   }
   .mobile-nav-toggle { 
@@ -610,6 +606,17 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   #nav .dropdown.dropdown-open .nav-link svg { 
     transform: rotate(180deg);
   }
+  #nav .dropdown-indicator {
+    width: 14px;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #nav .dropdown.dropdown-open .dropdown-indicator {
+    transform: rotate(180deg);
+  }
   #page-home .hero { 
     padding-top: calc(var(--nav-bar-h) + 16px);
     margin-top: 0;
@@ -634,21 +641,6 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   .values-grid { grid-template-columns: 1fr !important; }
   .footer-logo img { height: 120px !important; width: auto !important; }
   .container { padding: 0 20px; }
-  #page-become-tenant .tenant-hero-grid,
-  #page-become-tenant .tenant-values-grid,
-  #page-become-tenant .tenant-process-grid,
-  #page-become-tenant .tenant-support-grid {
-    grid-template-columns: 1fr !important;
-  }
-  #page-become-tenant .tenant-hero-grid { gap: 30px !important; }
-  #page-become-tenant .tenant-support-grid { gap: 32px !important; }
-  #page-become-tenant .tenant-hero-visual { min-height: 260px; }
-  #page-become-tenant .tenant-connector-line { display: none !important; }
-  #page-why-northvale .trust-img { display: none !important; }
-  .doc-item { flex-wrap: wrap; }
-  .doc-item > div { min-width: 0; }
-  .doc-note { flex-direction: column; }
-
   .btn-primary, .btn-outline, .btn-primary-teal, .btn-outline-teal { 
     min-height: 48px; 
     padding: 12px 20px; 
@@ -677,7 +669,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
   .page-hero { padding-left: 16px; padding-right: 16px; }
   .container { padding: 0 16px; }
   .nav-inner { padding: 0 12px; }
-  .nav-logo img { height: 48px !important; }
+  .nav-logo img { height: 38px !important; }
   .mobile-nav-toggle span { width: 20px; }
 }
 html.menu-open { 
@@ -703,11 +695,8 @@ body.menu-open {
 <nav id="nav" class="nav--home">
   <div class="nav-inner">
     <div class="nav-logo" onclick="showPage('home')">
-<<<<<<< HEAD
+      <img src="./assets/northvale-logo.png" alt="Northvale Property Management" class="logo-desktop" style="height:100px;width:auto;display:block;">
       <img src="./assets/northvale-logo-mobile.png" alt="Northvale Property Management" class="logo-mobile" style="height:100px;width:auto;display:block;">
-=======
->>>>>>> b0faf24d248be6294700b24a5b812bfa9c125ad7
-      <img src="./assets/northvale-logo-mobile.png" alt="Northvale Property Management" class="logo-mobile" style="height:50px;width:auto;display:none;">
     </div>
     <button type="button" class="mobile-nav-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links">
@@ -715,29 +704,26 @@ body.menu-open {
         <span class="nav-link" onclick="showPage('listings')">Properties</span>
       </div>
       <div class="nav-item dropdown">
-        <span class="nav-link">Owners <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="nav-link">Owners <span class="dropdown-indicator"></span></span>
         <div class="dropdown-menu">
-<<<<<<< HEAD
-=======
-          <button class="dropdown-item" onclick="showPage('tenant-placement')">Tenant Placement<small>Expert screening &amp; placement</small></button>
->>>>>>> b0faf24d248be6294700b24a5b812bfa9c125ad7
+          <button class="dropdown-item" onclick="showPage('tenant-placement')">Tenant Placement</button>
           <button class="dropdown-item" onclick="showPage('property-management')">Property Management<small>Full-service management</small></button>
-          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Income Protection<small>Rental guarantee program for landlords</small></button>
+          <button class="dropdown-item" onclick="showPage('rental-income')">Rental Guarantee<small>Rental guarantee program for landlords</small></button>
         </div>
       </div>
       <div class="nav-item dropdown">
-        <span class="nav-link">Tenants <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="nav-link">Tenants <span class="dropdown-indicator"></span></span>
         <div class="dropdown-menu">
-          <button class="dropdown-item" onclick="showPage('become-tenant')">Become a Tenant</button>
-          <button class="dropdown-item" onclick="showPage('required-documents')">Required Documents</button>
+          <button class="dropdown-item" onclick="showPage('become-tenant')">Become a Tenant<small>Find &amp; apply for a rental</small></button>
+          <button class="dropdown-item" onclick="showPage('required-documents')">Required Documents<small>What you'll need to apply</small></button>
         </div>
       </div>
       <div class="nav-item dropdown">
-        <span class="nav-link">About Us <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="nav-link">About Us <span class="dropdown-indicator"></span></span>
         <div class="dropdown-menu">
-          <button class="dropdown-item" onclick="showPage('why-northvale')">Why Northvale</button>
-          <button class="dropdown-item" onclick="showPage('how-it-works')">How It Works</button>
-          <button class="dropdown-item" onclick="showPage('areas')">Areas We Serve</button>
+          <button class="dropdown-item" onclick="showPage('why-northvale')">Why Northvale<small>Our philosophy &amp; approach</small></button>
+          <button class="dropdown-item" onclick="showPage('how-it-works')">How It Works<small>Our 5-step process</small></button>
+          <button class="dropdown-item" onclick="showPage('areas')">Areas We Serve<small>GTA &amp; surrounding region</small></button>
         </div>
       </div>
       <div class="nav-item"><span class="nav-link" onclick="showPage('faq')">FAQ</span></div>
@@ -970,6 +956,43 @@ body.menu-open {
       <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div>
+        <p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p>
+        <div class="footer-contact-item">Toronto, Ontario</div>
+        <div class="footer-contact-item"><a href="tel:4163423133">(416) 342-3133</a></div>
+        <div class="footer-contact-item"><a href="mailto:info@northvalepm.com">info@northvalepm.com</a></div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <span onclick="showPage('home')">Home</span>
+        <span onclick="showPage('why-northvale')">Why Northvale</span>
+        <span onclick="showPage('how-it-works')">How It Works</span>
+        <span onclick="showPage('areas')">Areas We Serve</span>
+        <span onclick="showPage('faq')">FAQ</span>
+        <span onclick="showPage('contact')">Contact</span>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <span onclick="showPage('tenant-placement')">Tenant Placement</span>
+        <span onclick="showPage('property-management')">Property Management</span>
+        <span onclick="showPage('rental-income')">Rental Guarantee</span>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Service Areas</div>
+        <span>Toronto</span><span>Mississauga</span><span>Brampton</span>
+        <span>Vaughan</span><span>Markham</span><span>Richmond Hill</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span>
+      <div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div>
+    </div>
+  </footer>
 </div><!-- /page-home -->
 
 <!-- ============================================================
@@ -1034,6 +1057,15 @@ body.menu-open {
       <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1080,6 +1112,15 @@ body.menu-open {
       <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1125,6 +1166,15 @@ body.menu-open {
       <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 555-1234</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1187,6 +1237,15 @@ body.menu-open {
       <span class="btn-primary" onclick="bookACall()">Book a Call</span>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 555-1234</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1313,6 +1372,15 @@ body.menu-open {
       </div>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1365,7 +1433,15 @@ body.menu-open {
     </div>
   </section>
   <section class="cta-section"><div class="container"><h2 class="cta-heading">Ready to Find Your Next Great Tenant?</h2><p class="cta-body">Book a call to discuss your property and get started with our tenant placement service.</p><span class="btn-primary" onclick="bookACall()">Book a Call</span></div></section>
-</div>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1418,11 +1494,19 @@ body.menu-open {
     </div>
   </section>
   <section class="cta-section"><div class="container"><h2 class="cta-heading">Let Northvale Manage Your Property</h2><p class="cta-body">Book a call to discuss your property and find the right management plan for your situation.</p><span class="btn-primary" onclick="bookACall()">Book a Call</span></div></section>
-</div>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
-     RENTAL INCOME PROTECTION PAGE
+     RENTAL GUARANTEE PAGE
      ============================================================ -->
 <div id="page-rental-income" class="page">
   <section class="page-hero">
@@ -1471,7 +1555,15 @@ body.menu-open {
     </div>
   </section>
   <section class="cta-section"><div class="container"><h2 class="cta-heading">Protect Your Rental Income Today</h2><p class="cta-body">Book a call to learn more about our income protection plans and find the right coverage for your property.</p><span class="btn-primary" onclick="bookACall()">Book a Call</span></div></section>
-</div>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><span>Toronto, Ontario</span><span>(416) 342-3133</span><span>info@northvalepm.com</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 
@@ -1699,7 +1791,16 @@ body.menu-open {
 
     </div>
   </section>
-</div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('listings')">Current Listings</span><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1708,8 +1809,8 @@ body.menu-open {
 <div id="page-become-tenant" class="page">
 
   <!-- HERO: split layout, headline left, lifestyle image right -->
-  <section class="tenant-hero-section" style="background:var(--bg-light);padding:120px 40px 80px;position:relative;overflow:hidden;">
-    <div class="tenant-hero-grid" style="max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+  <section style="background:var(--bg-light);padding:120px 40px 80px;position:relative;overflow:hidden;">
+    <div style="max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
       <div>
         <p class="section-eyebrow">Find Your Next Home</p>
         <h1 style="font-size:clamp(34px,4vw,52px);font-weight:800;color:var(--text-dark);letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px;">Renting Should Feel Like a Fresh Start.</h1>
@@ -1720,7 +1821,7 @@ body.menu-open {
           <span class="btn-outline-teal" onclick="bookACall()">Contact Us</span>
         </div>
       </div>
-      <div class="tenant-hero-visual" style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#1a6070 0%,#14454F 100%);display:flex;align-items:center;justify-content:center;position:relative;">
+      <div style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#1a6070 0%,#14454F 100%);display:flex;align-items:center;justify-content:center;position:relative;">
         <!-- Decorative visual since we don't have a tenant lifestyle image -->
         <div style="text-align:center;color:white;padding:40px;">
           <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:20px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -1739,7 +1840,7 @@ body.menu-open {
         <p class="section-eyebrow">Why Rent With Northvale</p>
         <h2 class="section-heading">What Makes Us Different</h2>
       </div>
-      <div class="tenant-values-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
         <div class="fade-up delay-1" style="text-align:center;padding:36px 28px;background:var(--bg-light);border-radius:var(--radius-lg);border:1px solid var(--border);">
           <div style="width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.69 12 19.79 19.79 0 0 1 3.6 1.18 2 2 0 0 1 5.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.91 8.77a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 24 17z"/></svg>
@@ -1772,9 +1873,9 @@ body.menu-open {
         <p class="section-eyebrow" style="color:rgba(255,255,255,0.55)">Simple & Clear</p>
         <h2 class="section-heading" style="color:var(--white)">Three Steps to Your New Home</h2>
       </div>
-      <div class="tenant-process-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;">
         <!-- connector line -->
-        <div class="tenant-connector-line" style="position:absolute;top:36px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:2px;background:rgba(255,255,255,0.2);z-index:0;"></div>
+        <div style="position:absolute;top:36px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:2px;background:rgba(255,255,255,0.2);z-index:0;"></div>
         <div class="fade-up delay-1" style="text-align:center;padding:0 28px;position:relative;z-index:1;">
           <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:22px;font-weight:800;color:var(--white);">1</div>
           <h3 style="font-size:18px;font-weight:800;color:var(--white);margin-bottom:12px;">Book a Showing</h3>
@@ -1797,7 +1898,7 @@ body.menu-open {
   <!-- SUPPORT SECTION -->
   <section class="section-py" style="background:var(--white)">
     <div class="container">
-      <div class="tenant-support-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
         <div style="background:var(--bg-light);border-radius:var(--radius-lg);padding:52px 44px;">
           <p class="section-eyebrow">Ongoing Support</p>
           <h2 class="section-heading" style="font-size:28px;">You're Not Alone After Move-In</h2>
@@ -1858,7 +1959,16 @@ body.menu-open {
       <span class="btn-primary" onclick="bookACall()">Contact Our Leasing Team</span>
     </div>
   </section>
-</div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -1942,7 +2052,16 @@ body.menu-open {
       <span class="btn-primary" onclick="showPage('become-tenant')">View Application Steps</span>
     </div>
   </section>
-</div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('why-northvale')">Why Northvale</span><span onclick="showPage('how-it-works')">How It Works</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Tenants</div><span onclick="showPage('become-tenant')">Become a Tenant</span><span onclick="showPage('required-documents')">Required Documents</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -2029,6 +2148,15 @@ body.menu-open {
       </div>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
 
 <!-- ============================================================
@@ -2091,17 +2219,16 @@ body.menu-open {
       </div>
     </div>
   </section>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
+      <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
+      <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
+  </footer>
 </div>
-
-<footer>
-  <div class="footer-grid">
-    <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
-    <div class="footer-col"><div class="footer-col-title">Quick Links</div><span onclick="showPage('home')">Home</span><span onclick="showPage('faq')">FAQ</span><span onclick="showPage('contact')">Contact</span></div>
-    <div class="footer-col"><div class="footer-col-title">Services</div><span onclick="showPage('tenant-placement')">Tenant Placement</span><span onclick="showPage('property-management')">Property Management</span><span onclick="showPage('rental-income')">Rental Guarantee</span></div>
-    <div class="footer-col"><div class="footer-col-title">Legal</div><span onclick="showPage('privacy-policy')">Privacy Policy</span><span onclick="showPage('terms')">Terms of Service</span></div>
-  </div>
-  <div class="footer-bottom"><span class="footer-copy">&copy; 2026 Northvale Property Management. All rights reserved.</span><div class="footer-legal"><span style="cursor:pointer" onclick="showPage('privacy-policy')">Privacy Policy</span><span style="cursor:pointer" onclick="showPage('terms')">Terms of Service</span></div></div>
-</footer>
 
 <!-- ============================================================
      JAVASCRIPT
@@ -2125,7 +2252,7 @@ const pageRoutes = {
   '/terms': 'terms'
 };
 
-function closeMobileMenu(skipScrollRestore = false) {
+function closeMobileMenu() {
   var nav = document.getElementById('nav');
   if (!nav || !nav.classList.contains('nav-menu-open')) return;
   
@@ -2143,7 +2270,7 @@ function closeMobileMenu(skipScrollRestore = false) {
   var scrollTop = parseInt(document.body.getAttribute('data-scroll-y') || '0', 10);
   document.body.removeAttribute('data-scroll-y');
   
-  if (!skipScrollRestore && scrollTop > 0) {
+  if (scrollTop > 0) {
     setTimeout(function() {
       window.scrollTo(0, scrollTop);
     }, 0);
@@ -2193,7 +2320,7 @@ function toggleMobileMenu() {
 }
 
 function showPage(id) {
-  closeMobileMenu(true);
+  closeMobileMenu();
   const target = document.getElementById('page-' + id);
   if (!target) return;
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
