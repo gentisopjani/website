@@ -334,22 +334,60 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 @media (max-width: 860px) { .contact-layout { grid-template-columns: 1fr; } .contact-info-panel { padding: 36px 28px; } .contact-form-panel { padding: 36px 28px; } }
 
 /* APPLICATION PAGE THEME */
-#page-application .application-wrap { background: var(--teal); }
-#page-application .application-panel { background: #165963; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-lg); padding: 36px; }
+#page-application .application-wrap { background: var(--teal) !important; }
+#page-application .application-panel { background: #165963 !important; border: 1px solid rgba(255,255,255,0.2) !important; border-radius: var(--radius-lg); padding: 36px; }
 #page-application #tenantApplicationForm h3 { color: var(--white) !important; }
 #page-application #tenantApplicationForm h4 { color: var(--white) !important; }
-#page-application #tenantApplicationForm label { color: rgba(255,255,255,0.95); }
-#page-application #tenantApplicationForm .req { color: rgba(255,255,255,0.95); }
+#page-application #tenantApplicationForm label { color: rgba(255,255,255,0.95) !important; }
+#page-application #tenantApplicationForm .req { color: rgba(255,255,255,0.95) !important; }
 #page-application #tenantApplicationForm input,
 #page-application #tenantApplicationForm select,
-#page-application #tenantApplicationForm textarea { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.28); }
+#page-application #tenantApplicationForm textarea { background: rgba(255,255,255,0.12) !important; color: var(--white) !important; border: 1px solid rgba(255,255,255,0.28) !important; }
 #page-application #tenantApplicationForm input::placeholder,
-#page-application #tenantApplicationForm textarea::placeholder { color: rgba(255,255,255,0.72); }
+#page-application #tenantApplicationForm textarea::placeholder { color: rgba(255,255,255,0.72) !important; }
 #page-application #tenantApplicationForm input:focus,
 #page-application #tenantApplicationForm select:focus,
-#page-application #tenantApplicationForm textarea:focus { border-color: rgba(255,255,255,0.55); box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
-#page-application #tenantApplicationForm .contact-submit-btn { background: var(--white); color: var(--teal); }
-#page-application #tenantApplicationForm .contact-submit-btn:hover { background: var(--bg-light); }
+#page-application #tenantApplicationForm textarea:focus { border-color: rgba(255,255,255,0.55) !important; box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
+#page-application #tenantApplicationForm .contact-submit-btn { background: var(--white) !important; color: var(--teal) !important; }
+#page-application #tenantApplicationForm .contact-submit-btn:hover { background: var(--bg-light) !important; }
+#page-application .app-consent-links { color: var(--white); text-decoration: underline; cursor: pointer; }
+#page-application .signature-wrap { margin-top: 8px; }
+#page-application .signature-canvas {
+  width: 100%;
+  height: 170px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  touch-action: none;
+  display: block;
+}
+#page-application .signature-actions { display: flex; justify-content: flex-end; margin-top: 8px; }
+#page-application .signature-clear-btn {
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#page-application .signature-clear-btn:hover { background: rgba(255,255,255,0.12); }
+#page-application .terms-box {
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.08);
+  padding: 14px;
+}
+#page-application .terms-box p {
+  color: rgba(255,255,255,0.92);
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0 0 10px;
+}
+#page-application .terms-box p:last-child { margin-bottom: 0; }
 
 
 /* ============================================================
@@ -2349,31 +2387,52 @@ body.menu-open {
     <div class="container" style="max-width:900px">
       <div class="application-panel">
         <form id="tenantApplicationForm" action="" method="POST" enctype="multipart/form-data" onsubmit="handleTenantApplicationSubmit(event)">
-          <h3 style="font-size:18px;font-weight:800;margin:0 0 12px;color:var(--text-dark)">Rental Property Details</h3>
+          <h3 style="font-size:18px;font-weight:800;margin:0 0 12px;color:var(--text-dark)">Address of Rental Property</h3>
           <div class="form-row">
             <div class="form-group">
-              <label>Property Address <span class="req">*</span></label>
-              <input type="text" name="rental_property_address" required>
+              <label>Street Address <span class="req">*</span></label>
+              <input type="text" name="rental_property_street" required>
             </div>
+            <div class="form-group"><label>Apartment, suite, etc</label><input type="text" name="rental_property_suite"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>City</label><input type="text" name="rental_property_city"></div>
+            <div class="form-group"><label>State/Province</label><input type="text" name="rental_property_state"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>ZIP / Postal Code</label><input type="text" name="rental_property_postal"></div>
             <div class="form-group">
               <label>Offer Amount (Monthly Rent) <span class="req">*</span></label>
               <input type="number" name="offer_amount" min="0" step="50" required>
             </div>
           </div>
 
-          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Primary Applicant Details</h3>
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Applicants Details</h3>
           <div class="form-row">
             <div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" name="first_name" required></div>
-            <div class="form-group"><label>Last Name <span class="req">*</span></label><input type="text" name="last_name" required></div>
+            <div class="form-group"><label>Last Name</label><input type="text" name="last_name"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+            <div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" name="email" placeholder="E.g. john@doe.com" required></div>
             <div class="form-group"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" placeholder="###-###-####" required></div>
           </div>
-          <div class="form-group"><label>Current Address <span class="req">*</span></label><input type="text" name="current_address" required></div>
+
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Applicants Current Address</h3>
+          <div class="form-row">
+            <div class="form-group"><label>Street Address <span class="req">*</span></label><input type="text" name="current_address_street" required></div>
+            <div class="form-group"><label>Apartment, suite, etc</label><input type="text" name="current_address_suite"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>City</label><input type="text" name="current_address_city"></div>
+            <div class="form-group"><label>State/Province</label><input type="text" name="current_address_state"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>ZIP / Postal Code</label><input type="text" name="current_address_postal"></div>
+            <div class="form-group"><label>Move in Date <span class="req">*</span> (Date of Initiating the lease)</label><input type="date" name="move_in_date" required></div>
+          </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Current Residence Status <span class="req">*</span></label>
+              <label>Current Status Of Residense? <span class="req">*</span></label>
               <select name="residence_status" required>
                 <option value="">Select</option>
                 <option>Leased</option>
@@ -2381,7 +2440,7 @@ body.menu-open {
                 <option>Living with friends or family</option>
               </select>
             </div>
-            <div class="form-group"><label>Desired Move-In Date <span class="req">*</span></label><input type="date" name="move_in_date" required></div>
+            <div class="form-group"><label>Any pets? <span class="req">*</span></label><input type="text" name="pets" placeholder="Type and number of pets" required></div>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -2389,7 +2448,7 @@ body.menu-open {
               <select name="smoke" required><option value="">Select</option><option>No</option><option>Yes</option></select>
             </div>
             <div class="form-group">
-              <label>Ever been evicted? <span class="req">*</span></label>
+              <label>Have you ever been evicted? <span class="req">*</span></label>
               <select name="evicted" required><option value="">Select</option><option>No</option><option>Yes</option></select>
             </div>
           </div>
@@ -2398,18 +2457,18 @@ body.menu-open {
               <label>Do you have a car? <span class="req">*</span></label>
               <select name="has_car" required><option value="">Select</option><option>No</option><option>Yes</option></select>
             </div>
-            <div class="form-group"><label>Any pets? (type/number)</label><input type="text" name="pets"></div>
-          </div>
-          <div class="form-row">
             <div class="form-group"><label>Current Landlord Name</label><input type="text" name="landlord_name"></div>
-            <div class="form-group"><label>Current Landlord Phone</label><input type="tel" name="landlord_phone"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Current Landlord Email</label><input type="email" name="landlord_email"></div>
-            <div class="form-group"><label>Number of Occupants <span class="req">*</span></label><input type="number" name="occupants_count" min="1" required></div>
+            <div class="form-group"><label>Email Address</label><input type="email" name="landlord_email"></div>
+            <div class="form-group"><label>Phone</label><input type="tel" name="landlord_phone"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>No. of Occupants</label><input type="number" name="occupants_count" min="0"></div>
+            <div class="form-group"><label>Occupant Names / Age / Relation</label><textarea name="occupant_details" placeholder="Example: John Doe, 8, Son"></textarea></div>
           </div>
 
-          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Employment & References</h3>
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Employment Details</h3>
           <div class="form-row">
             <div class="form-group"><label>Company Name</label><input type="text" name="company_name"></div>
             <div class="form-group"><label>Position</label><input type="text" name="position"></div>
@@ -2431,23 +2490,27 @@ body.menu-open {
                 <option>New to Canada</option>
               </select>
             </div>
-            <div class="form-group"><label>Years of Experience</label><input type="number" name="years_experience" min="0"></div>
+            <div class="form-group"><label>Years of experiance</label><input type="number" name="years_experience" min="0"></div>
+          </div>
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Work Reference</h3>
+          <div class="form-row">
+            <div class="form-group"><label>Work Reference First Name <span class="req">*</span></label><input type="text" name="work_reference_first_name" required></div>
+            <div class="form-group"><label>Work Reference Last Name <span class="req">*</span></label><input type="text" name="work_reference_last_name" required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label>Work Reference Name</label><input type="text" name="work_reference_name"></div>
-            <div class="form-group"><label>Work Reference Phone</label><input type="tel" name="work_reference_phone"></div>
+            <div class="form-group"><label>Work Reference Phone <span class="req">*</span></label><input type="tel" name="work_reference_phone" required></div>
+            <div class="form-group"><label>Work Reference Email <span class="req">*</span></label><input type="email" name="work_reference_email" required></div>
           </div>
-          <div class="form-group"><label>Work Reference Email</label><input type="email" name="work_reference_email"></div>
 
           <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Upload Documents</h3>
-          <div class="form-group"><label>Government ID (No Health Card)</label><input type="file" name="primary_government_id" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
-          <div class="form-group"><label>Employment / Income Proof</label><input type="file" name="primary_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
-          <div class="form-group"><label>Credit Report</label><input type="file" name="primary_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
+          <div class="form-group"><label>Primary Tenants Documents (Employment/Income Proof) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="primary_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+          <div class="form-group"><label>Primary Tenants Documents (Government ID) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="primary_government_id" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+          <div class="form-group"><label>Primary Tenants Documents (Credit Report) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="primary_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
 
-          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Additional Tenant(s)</h3>
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Additional Tenants?</h3>
           <div class="form-group">
-            <label>How many additional tenants?</label>
-            <select id="additionalTenantCount" name="additional_tenant_count" onchange="renderAdditionalTenantSections()">
+            <label>Select one <span class="req">*</span></label>
+            <select id="additionalTenantCount" name="additional_tenant_count" onchange="renderAdditionalTenantSections()" required>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -2458,11 +2521,32 @@ body.menu-open {
           <div id="additionalTenantsContainer"></div>
 
           <div class="form-group"><label>Additional Notes</label><textarea name="notes" placeholder="Anything else you'd like us to know."></textarea></div>
+          <div class="form-group">
+            <label>Terms and Conditions</label>
+            <div class="terms-box">
+              <p>By submitting this application and signing below, I/We confirm that all information provided is accurate and complete to the best of our knowledge, and agree to the rental application terms, privacy policy, and related conditions.</p>
+              <p><strong>1. Financial Obligations:</strong> Any required deposits, rent payments, and timelines provided by the property owner or management must be met as communicated in writing. Failure to meet deadlines may result in cancellation of this application or offer.</p>
+              <p><strong>2. Information Accuracy:</strong> Providing false, incomplete, or misleading information may result in immediate rejection of the application and may void any approved offer to lease.</p>
+              <p><strong>3. Verification Authorization:</strong> I/We authorize Northvale Property Management and its representatives to verify employment, income, references, rental history, and other supporting documents submitted with this application.</p>
+              <p><strong>4. Privacy and Data Use:</strong> I/We consent to the collection and use of personal information for rental screening, communication with relevant parties, and tenancy administration in accordance with applicable privacy laws.</p>
+              <p><strong>5. Document Deadlines:</strong> If additional documents are requested, I/We agree to provide them within the requested timeframe. Missing documents may delay or cancel application review.</p>
+              <p><strong>6. Liability Limitation:</strong> Northvale Property Management is not liable for losses arising from third-party decisions, landlord decisions, or applicant-provided information that is inaccurate or incomplete.</p>
+              <p><strong>7. Acknowledgement:</strong> I/We confirm that we have read and understood these terms before submitting this application.</p>
+            </div>
+          </div>
           <div class="form-group" style="margin-bottom:10px;">
             <label style="display:flex;gap:8px;align-items:flex-start;font-weight:500;">
               <input type="checkbox" name="consent" required style="width:auto;margin-top:2px;">
-              <span>I confirm that all information is accurate and consent to Northvale using this information to process this rental application. <span class="req">*</span></span>
+              <span>I agree with the <span class="app-consent-links" onclick="showPage('privacy-policy')">privacy policy</span> and <span class="app-consent-links" onclick="showPage('terms')">terms and conditions</span>. <span class="req">*</span></span>
             </label>
+          </div>
+          <div class="form-group signature-wrap">
+            <label>Signature <span class="req">*</span></label>
+            <canvas id="signatureCanvas" class="signature-canvas"></canvas>
+            <div class="signature-actions">
+              <button type="button" class="signature-clear-btn" onclick="clearApplicationSignature()">Clear Signature</button>
+            </div>
+            <input type="hidden" id="signatureData" name="signature_data">
           </div>
           <button type="submit" class="contact-submit-btn" id="tenantAppSubmitBtn">Submit Application</button>
           <div id="tenantAppMsg" style="display:none;text-align:center;margin-top:12px;font-size:14px;font-weight:600;"></div>
@@ -2615,6 +2699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     applicationForm.action = TENANT_APPLICATION_FORMSPREE_ENDPOINT;
   }
   renderAdditionalTenantSections();
+  initApplicationSignaturePad();
   initRouter();
 });
 
@@ -2919,6 +3004,24 @@ function handleTenantApplicationSubmit(e) {
   e.preventDefault();
   var btn = document.getElementById('tenantAppSubmitBtn');
   var msg = document.getElementById('tenantAppMsg');
+  var oversized = validateApplicationFileSizes(e.target, 5);
+  if (oversized) {
+    msg.style.display = 'block';
+    msg.style.color = '#c0392b';
+    msg.textContent = oversized;
+    return;
+  }
+  var signatureCanvas = document.getElementById('signatureCanvas');
+  var signatureData = document.getElementById('signatureData');
+  if (signatureCanvas && signatureData) {
+    if (signatureCanvas.getAttribute('data-signed') !== '1') {
+      msg.style.display = 'block';
+      msg.style.color = '#c0392b';
+      msg.textContent = 'Please add your signature before submitting.';
+      return;
+    }
+    signatureData.value = signatureCanvas.toDataURL('image/png');
+  }
   btn.disabled = true;
   btn.textContent = 'SENDING...';
   fetch(e.target.action, {
@@ -2931,6 +3034,8 @@ function handleTenantApplicationSubmit(e) {
       msg.style.color = '#14454F';
       msg.textContent = '✓ Application submitted. Our team will contact you shortly.';
       e.target.reset();
+      clearApplicationSignature();
+      renderAdditionalTenantSections();
       btn.textContent = 'Submit Application';
       btn.disabled = false;
     } else {
@@ -2954,30 +3059,131 @@ function renderAdditionalTenantSections() {
   for (var i = 1; i <= count; i++) {
     html += ''
       + '<div style="border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-md);padding:16px;margin:14px 0;background:rgba(255,255,255,0.06);">'
-      +   '<h4 style="margin:0 0 10px;font-size:15px;font-weight:800;color:var(--white)">Additional Tenant ' + i + '</h4>'
+      +   '<h4 style="margin:0 0 10px;font-size:15px;font-weight:800;color:var(--white)">Tenant Details (Additional tenants) #' + i + '</h4>'
       +   '<div class="form-row">'
-      +     '<div class="form-group"><label>First Name</label><input type="text" name="additional_' + i + '_first_name"></div>'
+      +     '<div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" name="additional_' + i + '_first_name" required></div>'
       +     '<div class="form-group"><label>Last Name</label><input type="text" name="additional_' + i + '_last_name"></div>'
       +   '</div>'
       +   '<div class="form-row">'
-      +     '<div class="form-group"><label>Email</label><input type="email" name="additional_' + i + '_email"></div>'
-      +     '<div class="form-group"><label>Phone</label><input type="tel" name="additional_' + i + '_phone"></div>'
+      +     '<div class="form-group"><label>Email Address <span class="req">*</span></label><input type="email" name="additional_' + i + '_email" placeholder="E.g. john@doe.com" required></div>'
+      +     '<div class="form-group"><label>Phone <span class="req">*</span></label><input type="tel" name="additional_' + i + '_phone" required></div>'
       +   '</div>'
       +   '<div class="form-row">'
-      +     '<div class="form-group"><label>Current Address</label><input type="text" name="additional_' + i + '_address"></div>'
-      +     '<div class="form-group"><label>Employment Status</label><input type="text" name="additional_' + i + '_employment_status"></div>'
+      +     '<div class="form-group"><label>Street Address</label><input type="text" name="additional_' + i + '_address"></div>'
+      +     '<div class="form-group"><label>Move in Date <span class="req">*</span> (Date of Initiating the lease)</label><input type="date" name="additional_' + i + '_move_in_date" required></div>'
       +   '</div>'
       +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Do you smoke? <span class="req">*</span></label><select name="additional_' + i + '_smoke" required><option value="">Select</option><option>No</option><option>Yes</option></select></div>'
+      +     '<div class="form-group"><label>Ever been evicted? <span class="req">*</span></label><select name="additional_' + i + '_evicted" required><option value="">Select</option><option>No</option><option>Yes</option></select></div>'
+      +   '</div>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Do you have a car? <span class="req">*</span></label><select name="additional_' + i + '_has_car" required><option value="">Select</option><option>No</option><option>Yes</option></select></div>'
+      +     '<div class="form-group"><label>Current Status Of Residense? <span class="req">*</span></label><select name="additional_' + i + '_residence_status" required><option value="">Select</option><option>Leased</option><option>Owned</option><option>Living with friends or family</option></select></div>'
+      +   '</div>'
+      +   '<h4 style="margin:8px 0 10px;font-size:14px;font-weight:800;color:var(--white)">Employment Details (Additional Tenants)</h4>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Any pets? <span class="req">*</span></label><input type="text" name="additional_' + i + '_pets" placeholder="Type and number of pets" required></div>'
       +     '<div class="form-group"><label>Monthly Income</label><input type="text" name="additional_' + i + '_income"></div>'
-      +     '<div class="form-group"><label>Credit Score</label><input type="text" name="additional_' + i + '_credit_score"></div>'
+      +   '</div>'
+      +   '<h4 style="margin:8px 0 10px;font-size:14px;font-weight:800;color:var(--white)">Work Reference (Additional Tenants)</h4>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Work Reference First Name <span class="req">*</span></label><input type="text" name="additional_' + i + '_work_ref_first_name" required></div>'
+      +     '<div class="form-group"><label>Work Reference Last Name <span class="req">*</span></label><input type="text" name="additional_' + i + '_work_ref_last_name" required></div>'
       +   '</div>'
       +   '<div class="form-row">'
-      +     '<div class="form-group"><label>Gov ID</label><input type="file" name="additional_' + i + '_gov_id" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>'
-      +     '<div class="form-group"><label>Income Proof</label><input type="file" name="additional_' + i + '_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>'
+      +     '<div class="form-group"><label>Work Reference Phone <span class="req">*</span></label><input type="tel" name="additional_' + i + '_work_ref_phone" required></div>'
+      +     '<div class="form-group"><label>Work Reference Email <span class="req">*</span></label><input type="email" name="additional_' + i + '_work_ref_email" required></div>'
+      +   '</div>'
+      +   '<h4 style="margin:8px 0 10px;font-size:14px;font-weight:800;color:var(--white)">Upload documents (Additional Tenants)</h4>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Primary Tenants Documents (Government ID) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="additional_' + i + '_gov_id" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
+      +     '<div class="form-group"><label>Primary Tenants Documents (Employment/Income Proof) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="additional_' + i + '_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
+      +   '</div>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Primary Tenants Documents (Credit Report / Screenshot) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="additional_' + i + '_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
+      +     '<div class="form-group"><label>Credit Score</label><select name="additional_' + i + '_credit_score"><option value="">Select</option><option>300 - 559 (Poor)</option><option>560 - 659 (Fair)</option><option>660 - 724 (Good)</option><option>725 - 759 (Very Good)</option><option>760+ (Excellent)</option><option>New to Canada</option></select></div>'
       +   '</div>'
       + '</div>';
   }
   container.innerHTML = html;
+}
+
+function validateApplicationFileSizes(form, maxSizeMb) {
+  var maxBytes = maxSizeMb * 1024 * 1024;
+  var fileInputs = form.querySelectorAll('input[type="file"]');
+  for (var i = 0; i < fileInputs.length; i++) {
+    var input = fileInputs[i];
+    if (!input.files || !input.files.length) continue;
+    if (input.files[0].size > maxBytes) {
+      var label = input.closest('.form-group') && input.closest('.form-group').querySelector('label');
+      var fieldName = label ? label.textContent.replace('*', '').trim() : 'A file';
+      return fieldName + ' exceeds the 5 MB limit. Please upload a smaller file.';
+    }
+  }
+  return '';
+}
+
+function initApplicationSignaturePad() {
+  var canvas = document.getElementById('signatureCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var drawing = false;
+
+  function resizeCanvas() {
+    var rect = canvas.getBoundingClientRect();
+    var ratio = window.devicePixelRatio || 1;
+    canvas.width = Math.max(1, Math.floor(rect.width * ratio));
+    canvas.height = Math.max(1, Math.floor(rect.height * ratio));
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#ffffff';
+    canvas.setAttribute('data-signed', '0');
+  }
+
+  function getPos(e) {
+    var rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  canvas.addEventListener('pointerdown', function(e) {
+    drawing = true;
+    var p = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    canvas.setPointerCapture(e.pointerId);
+  });
+
+  canvas.addEventListener('pointermove', function(e) {
+    if (!drawing) return;
+    var p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    canvas.setAttribute('data-signed', '1');
+  });
+
+  function stopDraw(e) {
+    if (!drawing) return;
+    drawing = false;
+    if (e && e.pointerId) canvas.releasePointerCapture(e.pointerId);
+  }
+
+  canvas.addEventListener('pointerup', stopDraw);
+  canvas.addEventListener('pointercancel', stopDraw);
+  window.addEventListener('resize', resizeCanvas);
+
+  resizeCanvas();
+}
+
+function clearApplicationSignature() {
+  var canvas = document.getElementById('signatureCanvas');
+  var signatureData = document.getElementById('signatureData');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.setAttribute('data-signed', '0');
+  if (signatureData) signatureData.value = '';
 }
 
 // ============================================================
