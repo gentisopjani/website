@@ -333,6 +333,24 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 .contact-form-panel .contact-form-note { color: rgba(255,255,255,0.78); opacity: 1; }
 @media (max-width: 860px) { .contact-layout { grid-template-columns: 1fr; } .contact-info-panel { padding: 36px 28px; } .contact-form-panel { padding: 36px 28px; } }
 
+/* APPLICATION PAGE THEME */
+#page-application .application-wrap { background: var(--teal); }
+#page-application .application-panel { background: #165963; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-lg); padding: 36px; }
+#page-application #tenantApplicationForm h3 { color: var(--white) !important; }
+#page-application #tenantApplicationForm h4 { color: var(--white) !important; }
+#page-application #tenantApplicationForm label { color: rgba(255,255,255,0.95); }
+#page-application #tenantApplicationForm .req { color: rgba(255,255,255,0.95); }
+#page-application #tenantApplicationForm input,
+#page-application #tenantApplicationForm select,
+#page-application #tenantApplicationForm textarea { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.28); }
+#page-application #tenantApplicationForm input::placeholder,
+#page-application #tenantApplicationForm textarea::placeholder { color: rgba(255,255,255,0.72); }
+#page-application #tenantApplicationForm input:focus,
+#page-application #tenantApplicationForm select:focus,
+#page-application #tenantApplicationForm textarea:focus { border-color: rgba(255,255,255,0.55); box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
+#page-application #tenantApplicationForm .contact-submit-btn { background: var(--white); color: var(--teal); }
+#page-application #tenantApplicationForm .contact-submit-btn:hover { background: var(--bg-light); }
+
 
 /* ============================================================
    SCROLL FADE-UP ANIMATIONS
@@ -2327,9 +2345,9 @@ body.menu-open {
       <p class="page-hero-subtitle">Please complete all required fields. Our leasing team will review your submission and contact you with next steps.</p>
     </div>
   </section>
-  <section class="section-py" style="background:var(--white)">
+  <section class="section-py application-wrap">
     <div class="container" style="max-width:900px">
-      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px">
+      <div class="application-panel">
         <form id="tenantApplicationForm" action="" method="POST" enctype="multipart/form-data" onsubmit="handleTenantApplicationSubmit(event)">
           <h3 style="font-size:18px;font-weight:800;margin:0 0 12px;color:var(--text-dark)">Rental Property Details</h3>
           <div class="form-row">
@@ -2487,10 +2505,8 @@ const pageRoutes = {
   '/terms': 'terms'
 };
 
-// Application page controls (update these before production)
+// Application page controls
 const TENANT_APPLICATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqewvebg';
-const APPLICATION_ACCESS_PASSWORD = 'northvale-apply';
-const APPLICATION_ACCESS_KEY = 'northvale_application_access_ok';
 
 function closeMobileMenu(skipScrollRestore = false) {
   var nav = document.getElementById('nav');
@@ -2560,18 +2576,6 @@ function toggleMobileMenu() {
 }
 
 function showPage(id) {
-  if (id === 'application') {
-    var hasAccess = sessionStorage.getItem(APPLICATION_ACCESS_KEY) === '1';
-    if (!hasAccess) {
-      var pass = window.prompt('Enter application access password:');
-      if (pass !== APPLICATION_ACCESS_PASSWORD) {
-        alert('Access denied.');
-        id = 'home';
-      } else {
-        sessionStorage.setItem(APPLICATION_ACCESS_KEY, '1');
-      }
-    }
-  }
   closeMobileMenu(true);
   const target = document.getElementById('page-' + id);
   if (!target) return;
@@ -2949,8 +2953,8 @@ function renderAdditionalTenantSections() {
   var html = '';
   for (var i = 1; i <= count; i++) {
     html += ''
-      + '<div style="border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin:14px 0;">'
-      +   '<h4 style="margin:0 0 10px;font-size:15px;font-weight:800;color:var(--text-dark)">Additional Tenant ' + i + '</h4>'
+      + '<div style="border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-md);padding:16px;margin:14px 0;background:rgba(255,255,255,0.06);">'
+      +   '<h4 style="margin:0 0 10px;font-size:15px;font-weight:800;color:var(--white)">Additional Tenant ' + i + '</h4>'
       +   '<div class="form-row">'
       +     '<div class="form-group"><label>First Name</label><input type="text" name="additional_' + i + '_first_name"></div>'
       +     '<div class="form-group"><label>Last Name</label><input type="text" name="additional_' + i + '_last_name"></div>'
