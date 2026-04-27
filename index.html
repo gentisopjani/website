@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Northvale Property Management</title>
 <meta name="description" content="Northvale Property Management — trusted residential property management across Toronto and the Greater Toronto Area. Tenant placement, full-service management, and rental guarantee programs.">
-<link rel="icon" type="image/jpeg" href="./assets/favicon.jpeg?v=1">
-<link rel="shortcut icon" href="./assets/favicon.jpeg?v=1">
+<link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
+<link rel="shortcut icon" href="./assets/favicon.png?v=2">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
@@ -325,6 +325,12 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 .contact-submit-btn { width: 100%; padding: 15px; background: var(--teal); color: var(--white); font-family: var(--font); font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border: none; border-radius: var(--radius-sm); cursor: pointer; margin-top: 8px; transition: background 0.2s; }
 .contact-submit-btn:hover { background: var(--teal-dark); }
 .contact-form-note { text-align: center; font-size: 13px; color: var(--text-body); margin-top: 14px; opacity: 0.7; }
+.contact-form-panel { background: var(--teal); }
+.contact-form-panel .contact-form-title { color: var(--white); }
+.contact-form-panel .form-group label { color: rgba(255,255,255,0.95); }
+.contact-form-panel .contact-submit-btn { background: var(--white); color: var(--teal); }
+.contact-form-panel .contact-submit-btn:hover { background: var(--bg-light); }
+.contact-form-panel .contact-form-note { color: rgba(255,255,255,0.78); opacity: 1; }
 @media (max-width: 860px) { .contact-layout { grid-template-columns: 1fr; } .contact-info-panel { padding: 36px 28px; } .contact-form-panel { padding: 36px 28px; } }
 
 
@@ -391,7 +397,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
    LISTINGS PAGE
    ============================================================ */
 .listings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.listing-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; }
+.listing-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; display: flex; flex-direction: column; height: 100%; }
 .listing-card:hover { box-shadow: 0 12px 36px rgba(20,69,79,0.12); transform: translateY(-4px); }
 @media (max-width: 768px) {
   .listing-card { transition: box-shadow 0.2s ease; }
@@ -399,7 +405,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 }
 .listing-img { width: 100%; height: 200px; object-fit: cover; display: block; background: #d0dfe0; }
 .listing-img-placeholder { width: 100%; height: 200px; background: linear-gradient(135deg, #1a6070, #14454F); display: flex; align-items: center; justify-content: center; }
-.listing-body { padding: 22px 24px 26px; }
+.listing-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
 .listing-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
 .listing-badge.available { background: #d4edda; color: #1a7a3a; }
 .listing-badge.rented { background: #f0e6e6; color: #9b3030; }
@@ -412,7 +418,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 .listing-rent { font-size: 22px; font-weight: 800; color: var(--teal); margin-bottom: 4px; }
 .listing-rent span { font-size: 13px; font-weight: 500; color: var(--text-body); }
 .listing-avail { font-size: 12.5px; color: var(--text-body); margin-bottom: 18px; }
-.listing-cta { display: block; width: 100%; padding: 11px; background: var(--teal); color: var(--white); font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; border: none; border-radius: var(--radius-sm); cursor: pointer; text-align: center; transition: background 0.2s; }
+.listing-cta { display: block; width: 100%; padding: 11px; background: var(--teal); color: var(--white); font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; border: none; border-radius: var(--radius-sm); cursor: pointer; text-align: center; transition: background 0.2s; margin-top: auto; }
 .listing-cta:hover { background: var(--teal-dark); }
 .listing-cta.rented-btn { background: var(--bg-light); color: var(--text-body); cursor: default; }
 .listings-empty { text-align: center; padding: 80px 40px; color: var(--text-body); }
@@ -1347,64 +1353,6 @@ body.menu-open {
         </form>
         </div>
 
-        <!-- LISTING 6 — 11 Chrysler Cres -->
-        <div class="listing-card">
-          <div class="listing-gallery" id="gallery-6">
-            <img class="listing-img gallery-slide active" src="images/listings/11-chrysler/01.png" alt="11 Chrysler Cres, Scarborough — exterior">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/02.png" alt="11 Chrysler Cres — backyard">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/03.png" alt="11 Chrysler Cres — main area">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/04.png" alt="11 Chrysler Cres — living area">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/05.png" alt="11 Chrysler Cres — basement room">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/06.png" alt="11 Chrysler Cres — room">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/07.png" alt="11 Chrysler Cres — den/storage">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/08.png" alt="11 Chrysler Cres — bathroom">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/09.png" alt="11 Chrysler Cres — kitchenette">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/10.png" alt="11 Chrysler Cres — kitchen">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/11.png" alt="11 Chrysler Cres — rec room">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/12.png" alt="11 Chrysler Cres — rec room">
-            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/13.png" alt="11 Chrysler Cres — room">
-            <button class="gallery-btn prev" onclick="changeSlide(event,'gallery-6',-1)">&#8249;</button>
-            <button class="gallery-btn next" onclick="changeSlide(event,'gallery-6',1)">&#8250;</button>
-            <div class="gallery-dots" id="dots-gallery-6">
-              <span class="gallery-dot active" onclick="goToSlide('gallery-6',0)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',1)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',2)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',3)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',4)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',5)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',6)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',7)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',8)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',9)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',10)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',11)"></span>
-              <span class="gallery-dot" onclick="goToSlide('gallery-6',12)"></span>
-            </div>
-          </div>
-          <div class="listing-body">
-            <span class="listing-badge available">Available</span>
-            <div class="listing-address">11 Chrysler Cres</div>
-            <div class="listing-unit">Scarborough, ON · M1R 2L9</div>
-            <div class="listing-details">
-              <div class="listing-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                1 + Den Bed
-              </div>
-              <div class="listing-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h7"/></svg>
-                1 Bath
-              </div>
-              <div class="listing-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                800 sqft
-              </div>
-            </div>
-            <div class="listing-rent">$1,750 <span>/ month</span></div>
-            <div class="listing-avail">Available: May 1st</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1766,12 +1714,6 @@ body.menu-open {
                 1,000 sqft
               </div>
             </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
-              <span style="font-size:11px;font-weight:700;background:#EEF5F6;color:var(--teal);padding:3px 8px;border-radius:20px;">Private Entrance</span>
-              <span style="font-size:11px;font-weight:700;background:#EEF5F6;color:var(--teal);padding:3px 8px;border-radius:20px;">9 ft Ceilings</span>
-              <span style="font-size:11px;font-weight:700;background:#EEF5F6;color:var(--teal);padding:3px 8px;border-radius:20px;">Free Internet</span>
-              <span style="font-size:11px;font-weight:700;background:#EEF5F6;color:var(--teal);padding:3px 8px;border-radius:20px;">Parking Included</span>
-            </div>
             <div class="listing-rent">$2,200 <span>/ month</span></div>
             <div class="listing-avail">Available: June 1, 2026</div>
             <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
@@ -1901,11 +1843,66 @@ body.menu-open {
                 2,000 sqft
               </div>
             </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
-              <span style="font-size:11px;font-weight:700;background:#EEF5F6;color:var(--teal);padding:3px 8px;border-radius:20px;">2 Parking Included</span>
-            </div>
             <div class="listing-rent">$3,600 <span>/ month</span></div>
             <div class="listing-avail">Available: June 1st</div>
+            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+          </div>
+        </div>
+
+        <!-- LISTING 6 — 11 Chrysler Cres -->
+        <div class="listing-card">
+          <div class="listing-gallery" id="gallery-6">
+            <img class="listing-img gallery-slide active" src="images/listings/11-chrysler/01.png" alt="11 Chrysler Cres, Scarborough — exterior">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/02.png" alt="11 Chrysler Cres — backyard">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/03.png" alt="11 Chrysler Cres — main area">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/04.png" alt="11 Chrysler Cres — living area">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/05.png" alt="11 Chrysler Cres — basement room">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/06.png" alt="11 Chrysler Cres — room">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/07.png" alt="11 Chrysler Cres — den/storage">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/08.png" alt="11 Chrysler Cres — bathroom">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/09.png" alt="11 Chrysler Cres — kitchenette">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/10.png" alt="11 Chrysler Cres — kitchen">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/11.png" alt="11 Chrysler Cres — rec room">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/12.png" alt="11 Chrysler Cres — rec room">
+            <img class="listing-img gallery-slide" src="images/listings/11-chrysler/13.png" alt="11 Chrysler Cres — room">
+            <button class="gallery-btn prev" onclick="changeSlide(event,'gallery-6',-1)">&#8249;</button>
+            <button class="gallery-btn next" onclick="changeSlide(event,'gallery-6',1)">&#8250;</button>
+            <div class="gallery-dots" id="dots-gallery-6">
+              <span class="gallery-dot active" onclick="goToSlide('gallery-6',0)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',1)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',2)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',3)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',4)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',5)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',6)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',7)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',8)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',9)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',10)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',11)"></span>
+              <span class="gallery-dot" onclick="goToSlide('gallery-6',12)"></span>
+            </div>
+          </div>
+          <div class="listing-body">
+            <span class="listing-badge available">Available</span>
+            <div class="listing-address">11 Chrysler Cres</div>
+            <div class="listing-unit">Scarborough, ON · M1R 2L9</div>
+            <div class="listing-details">
+              <div class="listing-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                1 + Den Bed
+              </div>
+              <div class="listing-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h7"/></svg>
+                1 Bath
+              </div>
+              <div class="listing-detail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                800 sqft
+              </div>
+            </div>
+            <div class="listing-rent">$1,750 <span>/ month</span></div>
+            <div class="listing-avail">Available: May 1st</div>
             <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
           </div>
         </div>
@@ -2319,6 +2316,144 @@ body.menu-open {
   </section>
 </div>
 
+<!-- ============================================================
+     TENANT APPLICATION PAGE (UNLINKED)
+     ============================================================ -->
+<div id="page-application" class="page">
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <p class="page-hero-eyebrow">Tenant Application</p>
+      <h1 class="page-hero-title">Rental Application Form</h1>
+      <p class="page-hero-subtitle">Please complete all required fields. Our leasing team will review your submission and contact you with next steps.</p>
+    </div>
+  </section>
+  <section class="section-py" style="background:var(--white)">
+    <div class="container" style="max-width:900px">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px">
+        <form id="tenantApplicationForm" action="" method="POST" enctype="multipart/form-data" onsubmit="handleTenantApplicationSubmit(event)">
+          <h3 style="font-size:18px;font-weight:800;margin:0 0 12px;color:var(--text-dark)">Rental Property Details</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Property Address <span class="req">*</span></label>
+              <input type="text" name="rental_property_address" required>
+            </div>
+            <div class="form-group">
+              <label>Offer Amount (Monthly Rent) <span class="req">*</span></label>
+              <input type="number" name="offer_amount" min="0" step="50" required>
+            </div>
+          </div>
+
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Primary Applicant Details</h3>
+          <div class="form-row">
+            <div class="form-group"><label>First Name <span class="req">*</span></label><input type="text" name="first_name" required></div>
+            <div class="form-group"><label>Last Name <span class="req">*</span></label><input type="text" name="last_name" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+            <div class="form-group"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" placeholder="###-###-####" required></div>
+          </div>
+          <div class="form-group"><label>Current Address <span class="req">*</span></label><input type="text" name="current_address" required></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Current Residence Status <span class="req">*</span></label>
+              <select name="residence_status" required>
+                <option value="">Select</option>
+                <option>Leased</option>
+                <option>Owned</option>
+                <option>Living with friends or family</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Desired Move-In Date <span class="req">*</span></label><input type="date" name="move_in_date" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Do you smoke? <span class="req">*</span></label>
+              <select name="smoke" required><option value="">Select</option><option>No</option><option>Yes</option></select>
+            </div>
+            <div class="form-group">
+              <label>Ever been evicted? <span class="req">*</span></label>
+              <select name="evicted" required><option value="">Select</option><option>No</option><option>Yes</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Do you have a car? <span class="req">*</span></label>
+              <select name="has_car" required><option value="">Select</option><option>No</option><option>Yes</option></select>
+            </div>
+            <div class="form-group"><label>Any pets? (type/number)</label><input type="text" name="pets"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Current Landlord Name</label><input type="text" name="landlord_name"></div>
+            <div class="form-group"><label>Current Landlord Phone</label><input type="tel" name="landlord_phone"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Current Landlord Email</label><input type="email" name="landlord_email"></div>
+            <div class="form-group"><label>Number of Occupants <span class="req">*</span></label><input type="number" name="occupants_count" min="1" required></div>
+          </div>
+
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Employment & References</h3>
+          <div class="form-row">
+            <div class="form-group"><label>Company Name</label><input type="text" name="company_name"></div>
+            <div class="form-group"><label>Position</label><input type="text" name="position"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Salary / Monthly Income</label><input type="text" name="salary_income"></div>
+            <div class="form-group"><label>Company Email</label><input type="email" name="company_email"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Credit Score</label>
+              <select name="credit_score">
+                <option value="">Select</option>
+                <option>300 - 559 (Poor)</option>
+                <option>560 - 659 (Fair)</option>
+                <option>660 - 724 (Good)</option>
+                <option>725 - 759 (Very Good)</option>
+                <option>760+ (Excellent)</option>
+                <option>New to Canada</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Years of Experience</label><input type="number" name="years_experience" min="0"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Work Reference Name</label><input type="text" name="work_reference_name"></div>
+            <div class="form-group"><label>Work Reference Phone</label><input type="tel" name="work_reference_phone"></div>
+          </div>
+          <div class="form-group"><label>Work Reference Email</label><input type="email" name="work_reference_email"></div>
+
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Upload Documents</h3>
+          <div class="form-group"><label>Government ID (No Health Card)</label><input type="file" name="primary_government_id" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
+          <div class="form-group"><label>Employment / Income Proof</label><input type="file" name="primary_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
+          <div class="form-group"><label>Credit Report</label><input type="file" name="primary_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>
+
+          <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Additional Tenant(s)</h3>
+          <div class="form-group">
+            <label>How many additional tenants?</label>
+            <select id="additionalTenantCount" name="additional_tenant_count" onchange="renderAdditionalTenantSections()">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div id="additionalTenantsContainer"></div>
+
+          <div class="form-group"><label>Additional Notes</label><textarea name="notes" placeholder="Anything else you'd like us to know."></textarea></div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label style="display:flex;gap:8px;align-items:flex-start;font-weight:500;">
+              <input type="checkbox" name="consent" required style="width:auto;margin-top:2px;">
+              <span>I confirm that all information is accurate and consent to Northvale using this information to process this rental application. <span class="req">*</span></span>
+            </label>
+          </div>
+          <button type="submit" class="contact-submit-btn" id="tenantAppSubmitBtn">Submit Application</button>
+          <div id="tenantAppMsg" style="display:none;text-align:center;margin-top:12px;font-size:14px;font-weight:600;"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
 <footer>
   <div class="footer-grid">
     <div><div class="footer-logo"><img src="./assets/northvale-logo.png" alt="Northvale Property Management" style="height:120px;width:auto;display:block;"></div><p class="footer-tagline">Professional residential property management for owners across the Greater Toronto Area.</p></div>
@@ -2345,11 +2480,17 @@ const pageRoutes = {
   '/rental-income': 'rental-income',
   '/properties': 'listings',
   '/listings': 'listings',
+  '/application': 'application',
   '/become-tenant': 'become-tenant',
   '/required-documents': 'required-documents',
   '/privacy-policy': 'privacy-policy',
   '/terms': 'terms'
 };
+
+// Application page controls (update these before production)
+const TENANT_APPLICATION_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqewvebg';
+const APPLICATION_ACCESS_PASSWORD = 'northvale-apply';
+const APPLICATION_ACCESS_KEY = 'northvale_application_access_ok';
 
 function closeMobileMenu(skipScrollRestore = false) {
   var nav = document.getElementById('nav');
@@ -2419,6 +2560,18 @@ function toggleMobileMenu() {
 }
 
 function showPage(id) {
+  if (id === 'application') {
+    var hasAccess = sessionStorage.getItem(APPLICATION_ACCESS_KEY) === '1';
+    if (!hasAccess) {
+      var pass = window.prompt('Enter application access password:');
+      if (pass !== APPLICATION_ACCESS_PASSWORD) {
+        alert('Access denied.');
+        id = 'home';
+      } else {
+        sessionStorage.setItem(APPLICATION_ACCESS_KEY, '1');
+      }
+    }
+  }
   closeMobileMenu(true);
   const target = document.getElementById('page-' + id);
   if (!target) return;
@@ -2453,6 +2606,11 @@ window.addEventListener('popstate', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  var applicationForm = document.getElementById('tenantApplicationForm');
+  if (applicationForm) {
+    applicationForm.action = TENANT_APPLICATION_FORMSPREE_ENDPOINT;
+  }
+  renderAdditionalTenantSections();
   initRouter();
 });
 
@@ -2751,6 +2909,71 @@ function handleHeroFormSubmit(e) {
     btn.textContent = 'SUBMIT';
     btn.disabled = false;
   });
+}
+
+function handleTenantApplicationSubmit(e) {
+  e.preventDefault();
+  var btn = document.getElementById('tenantAppSubmitBtn');
+  var msg = document.getElementById('tenantAppMsg');
+  btn.disabled = true;
+  btn.textContent = 'SENDING...';
+  fetch(e.target.action, {
+    method: 'POST',
+    body: new FormData(e.target),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(res) {
+    if (res.ok) {
+      msg.style.display = 'block';
+      msg.style.color = '#14454F';
+      msg.textContent = '✓ Application submitted. Our team will contact you shortly.';
+      e.target.reset();
+      btn.textContent = 'Submit Application';
+      btn.disabled = false;
+    } else {
+      throw new Error('Network error');
+    }
+  }).catch(function() {
+    msg.style.display = 'block';
+    msg.style.color = '#c0392b';
+    msg.textContent = 'Something went wrong. Please email us at info@northvalepm.com';
+    btn.textContent = 'Submit Application';
+    btn.disabled = false;
+  });
+}
+
+function renderAdditionalTenantSections() {
+  var countEl = document.getElementById('additionalTenantCount');
+  var container = document.getElementById('additionalTenantsContainer');
+  if (!countEl || !container) return;
+  var count = parseInt(countEl.value || '0', 10);
+  var html = '';
+  for (var i = 1; i <= count; i++) {
+    html += ''
+      + '<div style="border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin:14px 0;">'
+      +   '<h4 style="margin:0 0 10px;font-size:15px;font-weight:800;color:var(--text-dark)">Additional Tenant ' + i + '</h4>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>First Name</label><input type="text" name="additional_' + i + '_first_name"></div>'
+      +     '<div class="form-group"><label>Last Name</label><input type="text" name="additional_' + i + '_last_name"></div>'
+      +   '</div>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Email</label><input type="email" name="additional_' + i + '_email"></div>'
+      +     '<div class="form-group"><label>Phone</label><input type="tel" name="additional_' + i + '_phone"></div>'
+      +   '</div>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Current Address</label><input type="text" name="additional_' + i + '_address"></div>'
+      +     '<div class="form-group"><label>Employment Status</label><input type="text" name="additional_' + i + '_employment_status"></div>'
+      +   '</div>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Monthly Income</label><input type="text" name="additional_' + i + '_income"></div>'
+      +     '<div class="form-group"><label>Credit Score</label><input type="text" name="additional_' + i + '_credit_score"></div>'
+      +   '</div>'
+      +   '<div class="form-row">'
+      +     '<div class="form-group"><label>Gov ID</label><input type="file" name="additional_' + i + '_gov_id" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>'
+      +     '<div class="form-group"><label>Income Proof</label><input type="file" name="additional_' + i + '_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp"></div>'
+      +   '</div>'
+      + '</div>';
+  }
+  container.innerHTML = html;
 }
 
 // ============================================================
