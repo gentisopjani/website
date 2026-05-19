@@ -341,17 +341,27 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 #page-application #tenantApplicationForm label { color: rgba(255,255,255,0.95) !important; }
 #page-application #tenantApplicationForm .req { color: rgba(255,255,255,0.95) !important; }
 #page-application #tenantApplicationForm input,
-#page-application #tenantApplicationForm select,
 #page-application #tenantApplicationForm textarea { background: rgba(255,255,255,0.12) !important; color: var(--white) !important; border: 1px solid rgba(255,255,255,0.28) !important; }
+#page-application #tenantApplicationForm select {
+  background: #ffffff !important;
+  color: var(--text-dark) !important;
+  border: 1px solid rgba(255,255,255,0.45) !important;
+  cursor: pointer;
+}
 #page-application #tenantApplicationForm input::placeholder,
 #page-application #tenantApplicationForm textarea::placeholder { color: rgba(255,255,255,0.72) !important; }
 #page-application #tenantApplicationForm input:focus,
 #page-application #tenantApplicationForm select:focus,
 #page-application #tenantApplicationForm textarea:focus { border-color: rgba(255,255,255,0.55) !important; box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
-#page-application #tenantApplicationForm select option,
-#page-application #tenantApplicationForm select optgroup {
+#page-application #tenantApplicationForm select:focus { color: var(--text-dark) !important; background: #ffffff !important; }
+#page-application #tenantApplicationForm input[type="file"] {
+  background: rgba(255,255,255,0.95) !important;
   color: var(--text-dark) !important;
-  background-color: var(--white) !important;
+  padding: 10px 12px !important;
+}
+#page-application #tenantApplicationForm input[type="checkbox"] {
+  width: auto !important;
+  accent-color: var(--teal);
 }
 #page-application #tenantApplicationForm .contact-submit-btn { background: var(--white) !important; color: var(--teal) !important; }
 #page-application #tenantApplicationForm .contact-submit-btn:hover { background: var(--bg-light) !important; }
@@ -360,11 +370,12 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 #page-application .signature-canvas {
   width: 100%;
   height: 170px;
-  border: 1px solid rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.45);
   border-radius: var(--radius-sm);
-  background: rgba(255,255,255,0.08);
+  background: #ffffff;
   touch-action: none;
   display: block;
+  cursor: crosshair;
 }
 #page-application .signature-actions { display: flex; justify-content: flex-end; margin-top: 8px; }
 #page-application .signature-clear-btn {
@@ -2686,6 +2697,11 @@ function showPage(id) {
   } else if (id === 'home' && window.location.pathname !== '/') {
     window.history.pushState({ page: id }, '', '/');
   }
+  if (id === 'application') {
+    requestAnimationFrame(function() {
+      initApplicationSignaturePad();
+    });
+  }
 }
 
 function initRouter() {
@@ -2708,8 +2724,8 @@ document.addEventListener('DOMContentLoaded', () => {
     applicationForm.action = TENANT_APPLICATION_FORMSPREE_ENDPOINT;
   }
   renderAdditionalTenantSections();
-  initApplicationSignaturePad();
   initRouter();
+  initApplicationSignaturePad();
 });
 
 function bookACall() {
@@ -3020,6 +3036,8 @@ function tenantApplicationSubmitErrorMessage(res, data) {
   return 'Something went wrong. Please email us at info@northvalepm.com';
 }
 
+var applicationSignaturePadBound = false;
+
 function readFileAsDataUrl(file) {
   return new Promise(function(resolve, reject) {
     var reader = new FileReader();
@@ -3029,35 +3047,87 @@ function readFileAsDataUrl(file) {
   });
 }
 
+function uploadApplicationDocument(file) {
+  var body = new FormData();
+  body.append('file', file);
+  return fetch('/api/upload-document', {
+    method: 'POST',
+    body: body
+  }).then(function(res) {
+    return res.json().catch(function() { return {}; }).then(function(data) {
+      if (res.status === 503) {
+        return readFileAsDataUrl(file).then(function(dataUrl) {
+          return { inline: true, dataUrl: dataUrl, filename: file.name };
+        });
+      }
+      if (!res.ok) {
+        throw new Error(data.error || 'Document upload failed');
+      }
+      return data;
+    });
+  });
+}
+
+function appendFormFieldsToFormData(form, fd) {
+  for (var i = 0; i < form.elements.length; i++) {
+    var el = form.elements[i];
+    if (!el.name || el.disabled) continue;
+    if (el.type === 'file' || el.type === 'submit' || el.type === 'button') continue;
+    if (el.type === 'checkbox') {
+      if (el.checked) fd.append(el.name, el.value || 'on');
+    } else if (el.type === 'radio') {
+      if (el.checked) fd.append(el.name, el.value);
+    } else {
+      fd.append(el.name, el.value);
+    }
+  }
+}
+
 function prepareTenantApplicationFormData(form) {
-  var fd = new FormData(form);
+  var fd = new FormData();
+  appendFormFieldsToFormData(form, fd);
   var fileInputs = form.querySelectorAll('input[type="file"]');
-  var tasks = [];
+  var uploadTasks = [];
   fileInputs.forEach(function(input) {
-    if (!input.name) return;
-    fd.delete(input.name);
-    if (!input.files || !input.files[0]) return;
+    if (!input.name || !input.files || !input.files[0]) return;
     var file = input.files[0];
-    tasks.push(readFileAsDataUrl(file).then(function(dataUrl) {
-      fd.append(input.name + '_filename', file.name);
-      fd.append(input.name + '_mimetype', file.type || 'application/octet-stream');
-      fd.append(input.name + '_data', dataUrl);
+    uploadTasks.push(uploadApplicationDocument(file).then(function(result) {
+      if (result.inline) {
+        fd.append(input.name + '_data', result.dataUrl);
+        fd.append(input.name + '_filename', result.filename || file.name);
+      } else {
+        fd.append(input.name + '_url', result.url);
+        fd.append(input.name + '_filename', result.filename || file.name);
+      }
     }));
   });
   var applicantEmail = form.querySelector('[name="email"]');
   var applicantFirst = form.querySelector('[name="first_name"]');
   var subjectName = applicantFirst && applicantFirst.value ? applicantFirst.value.trim() : 'Applicant';
-  fd.set('_subject', 'New Tenant Application — ' + subjectName);
+  fd.set('_subject', 'New Tenant Application - ' + subjectName);
   fd.set('_form', 'Tenant Application');
   if (applicantEmail && applicantEmail.value) fd.set('_replyto', applicantEmail.value);
-  return Promise.all(tasks).then(function() { return fd; });
+  return Promise.all(uploadTasks).then(function() { return fd; });
+}
+
+function exportApplicationSignatureData(canvas) {
+  var rect = canvas.getBoundingClientRect();
+  var exportCanvas = document.createElement('canvas');
+  exportCanvas.width = Math.max(1, Math.min(640, Math.floor(rect.width)));
+  exportCanvas.height = Math.max(1, Math.min(220, Math.floor(rect.height)));
+  var ctx = exportCanvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+  ctx.drawImage(canvas, 0, 0, exportCanvas.width, exportCanvas.height);
+  return exportCanvas.toDataURL('image/jpeg', 0.88);
 }
 
 function handleTenantApplicationSubmit(e) {
   e.preventDefault();
   var btn = document.getElementById('tenantAppSubmitBtn');
   var msg = document.getElementById('tenantAppMsg');
-  var oversized = validateApplicationFileSizes(e.target, 4);
+  var form = e.target;
+  var oversized = validateApplicationFileSizes(form, 4);
   if (oversized) {
     msg.style.display = 'block';
     msg.style.color = '#c0392b';
@@ -3070,15 +3140,17 @@ function handleTenantApplicationSubmit(e) {
     if (signatureCanvas.getAttribute('data-signed') !== '1') {
       msg.style.display = 'block';
       msg.style.color = '#c0392b';
-      msg.textContent = 'Please add your signature before submitting.';
+      msg.textContent = 'Please sign in the box above before submitting.';
       return;
     }
-    signatureData.value = signatureCanvas.toDataURL('image/png');
+    signatureData.value = exportApplicationSignatureData(signatureCanvas);
   }
   btn.disabled = true;
-  btn.textContent = 'SENDING...';
-  prepareTenantApplicationFormData(e.target).then(function(payload) {
-    return fetch(e.target.action, {
+  btn.textContent = 'UPLOADING DOCUMENTS...';
+  msg.style.display = 'none';
+  prepareTenantApplicationFormData(form).then(function(payload) {
+    btn.textContent = 'SENDING...';
+    return fetch(form.action, {
       method: 'POST',
       body: payload,
       headers: { 'Accept': 'application/json' }
@@ -3087,8 +3159,8 @@ function handleTenantApplicationSubmit(e) {
         if (res.ok) {
           msg.style.display = 'block';
           msg.style.color = '#14454F';
-          msg.textContent = '✓ Application submitted. Our team will contact you shortly.';
-          e.target.reset();
+          msg.textContent = 'Application submitted. Our team will contact you shortly.';
+          form.reset();
           clearApplicationSignature();
           renderAdditionalTenantSections();
           btn.textContent = 'Submit Application';
@@ -3102,10 +3174,10 @@ function handleTenantApplicationSubmit(e) {
         btn.disabled = false;
       });
     });
-  }).catch(function() {
+  }).catch(function(err) {
     msg.style.display = 'block';
     msg.style.color = '#c0392b';
-    msg.textContent = 'Something went wrong. Please email us at info@northvalepm.com';
+    msg.textContent = (err && err.message) ? err.message : 'Something went wrong. Please email us at info@northvalepm.com';
     btn.textContent = 'Submit Application';
     btn.disabled = false;
   });
@@ -3184,57 +3256,94 @@ function validateApplicationFileSizes(form, maxSizeMb) {
   return '';
 }
 
+function resizeApplicationSignaturePad() {
+  var canvas = document.getElementById('signatureCanvas');
+  if (!canvas) return;
+  var rect = canvas.getBoundingClientRect();
+  if (rect.width < 50) {
+    requestAnimationFrame(resizeApplicationSignaturePad);
+    return;
+  }
+  var hadSignature = canvas.getAttribute('data-signed') === '1';
+  var snapshot = hadSignature ? canvas.toDataURL('image/png') : null;
+  var ratio = window.devicePixelRatio || 1;
+  canvas.width = Math.max(1, Math.floor(rect.width * ratio));
+  canvas.height = Math.max(1, Math.floor(rect.height * ratio));
+  var ctx = canvas.getContext('2d');
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = '#14454F';
+  if (snapshot) {
+    var img = new Image();
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0, rect.width, rect.height);
+    };
+    img.src = snapshot;
+  } else {
+    canvas.setAttribute('data-signed', '0');
+  }
+}
+
 function initApplicationSignaturePad() {
   var canvas = document.getElementById('signatureCanvas');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
   var drawing = false;
 
-  function resizeCanvas() {
-    var rect = canvas.getBoundingClientRect();
-    var ratio = window.devicePixelRatio || 1;
-    canvas.width = Math.max(1, Math.floor(rect.width * ratio));
-    canvas.height = Math.max(1, Math.floor(rect.height * ratio));
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = '#ffffff';
-    canvas.setAttribute('data-signed', '0');
-  }
-
   function getPos(e) {
     var rect = canvas.getBoundingClientRect();
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    var clientX = e.clientX != null ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+    var clientY = e.clientY != null ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+    return { x: clientX - rect.left, y: clientY - rect.top };
   }
 
-  canvas.addEventListener('pointerdown', function(e) {
+  function startDraw(e) {
+    if (e.cancelable) e.preventDefault();
     drawing = true;
     var p = getPos(e);
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
-    canvas.setPointerCapture(e.pointerId);
-  });
+    if (canvas.setPointerCapture && e.pointerId != null) {
+      try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+  }
 
-  canvas.addEventListener('pointermove', function(e) {
+  function moveDraw(e) {
     if (!drawing) return;
+    if (e.cancelable) e.preventDefault();
     var p = getPos(e);
     ctx.lineTo(p.x, p.y);
     ctx.stroke();
     canvas.setAttribute('data-signed', '1');
-  });
+  }
 
   function stopDraw(e) {
     if (!drawing) return;
     drawing = false;
-    if (e && e.pointerId) canvas.releasePointerCapture(e.pointerId);
+    if (canvas.releasePointerCapture && e && e.pointerId != null) {
+      try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
   }
 
-  canvas.addEventListener('pointerup', stopDraw);
-  canvas.addEventListener('pointercancel', stopDraw);
-  window.addEventListener('resize', resizeCanvas);
+  if (!applicationSignaturePadBound) {
+    canvas.addEventListener('pointerdown', startDraw);
+    canvas.addEventListener('pointermove', moveDraw);
+    canvas.addEventListener('pointerup', stopDraw);
+    canvas.addEventListener('pointercancel', stopDraw);
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', moveDraw);
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('mouseleave', stopDraw);
+    canvas.addEventListener('touchstart', startDraw, { passive: false });
+    canvas.addEventListener('touchmove', moveDraw, { passive: false });
+    canvas.addEventListener('touchend', stopDraw);
+    window.addEventListener('resize', resizeApplicationSignaturePad);
+    applicationSignaturePadBound = true;
+  }
 
-  resizeCanvas();
+  resizeApplicationSignaturePad();
 }
 
 function clearApplicationSignature() {
@@ -3242,9 +3351,11 @@ function clearApplicationSignature() {
   var signatureData = document.getElementById('signatureData');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
+  var rect = canvas.getBoundingClientRect();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   canvas.setAttribute('data-signed', '0');
   if (signatureData) signatureData.value = '';
+  resizeApplicationSignaturePad();
 }
 
 // ============================================================
