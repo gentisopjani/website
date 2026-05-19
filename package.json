@@ -1,6 +1,7 @@
 {
   "name": "northvale-website",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@vercel/blob": "^2.4.0"
   }
