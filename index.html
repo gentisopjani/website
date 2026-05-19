@@ -348,6 +348,11 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 #page-application #tenantApplicationForm input:focus,
 #page-application #tenantApplicationForm select:focus,
 #page-application #tenantApplicationForm textarea:focus { border-color: rgba(255,255,255,0.55) !important; box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
+#page-application #tenantApplicationForm select option,
+#page-application #tenantApplicationForm select optgroup {
+  color: var(--text-dark) !important;
+  background-color: var(--white) !important;
+}
 #page-application #tenantApplicationForm .contact-submit-btn { background: var(--white) !important; color: var(--teal) !important; }
 #page-application #tenantApplicationForm .contact-submit-btn:hover { background: var(--bg-light) !important; }
 #page-application .app-consent-links { color: var(--white); text-decoration: underline; cursor: pointer; }
@@ -465,6 +470,7 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 .listing-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
 .listing-badge.available { background: #d4edda; color: #1a7a3a; }
 .listing-badge.rented { background: #f0e6e6; color: #9b3030; }
+.listing-badge.leased { background: #e8ecec; color: #5a6b70; }
 .listing-badge.coming-soon { background: #fff3cd; color: #856404; }
 .listing-address { font-size: 16px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; line-height: 1.3; }
 .listing-unit { font-size: 13px; color: var(--text-body); margin-bottom: 16px; }
@@ -476,7 +482,9 @@ footer { background: var(--teal-dark); border-top: 1px solid rgba(255,255,255,0.
 .listing-avail { font-size: 12.5px; color: var(--text-body); margin-bottom: 18px; }
 .listing-cta { display: block; width: 100%; padding: 11px; background: var(--teal); color: var(--white); font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; border: none; border-radius: var(--radius-sm); cursor: pointer; text-align: center; transition: background 0.2s; margin-top: auto; }
 .listing-cta:hover { background: var(--teal-dark); }
-.listing-cta.rented-btn { background: var(--bg-light); color: var(--text-body); cursor: default; }
+.listing-cta.rented-btn,
+.listing-cta.leased-btn { background: var(--bg-light); color: var(--text-body); cursor: default; }
+.listing-cta.leased-btn:hover { background: var(--bg-light); }
 .listings-empty { text-align: center; padding: 80px 40px; color: var(--text-body); }
 @media (max-width: 900px) { .listings-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 580px) { .listings-grid { grid-template-columns: 1fr; } }
@@ -1583,18 +1591,19 @@ body.menu-open {
      - To ADD a listing: copy any existing listing block and paste it
        inside the listings-grid div, then update the details.
      - To REMOVE a listing: delete everything between START and END.
-     - To mark as RENTED: change class "available" → "rented",
-       change badge text to "Rented", change button class to
-       "listing-cta rented-btn", and change button text to "Now Rented".
+     - To mark as LEASED: change class "available" → "leased",
+       badge text to "Leased", listing-avail to leased message,
+       button class to "listing-cta leased-btn", button text to "Leased",
+       remove onclick and add type="button" disabled.
      - PHOTO: replace the listing-img-placeholder div with:
        <img class="listing-img" src="YOUR_IMAGE_URL" alt="property address">
      ============================================================ -->
 <div id="page-listings" class="page">
   <section class="page-hero">
     <div class="page-hero-content">
-      <p class="page-hero-eyebrow">Available Rentals</p>
+      <p class="page-hero-eyebrow">Rental Listings</p>
       <h1 class="page-hero-title">Current Listings</h1>
-      <p class="page-hero-subtitle">Quality residential properties managed by Northvale across Toronto and the Greater Toronto Area. Contact us to schedule a viewing.</p>
+      <p class="page-hero-subtitle">Recently leased properties managed by Northvale across Toronto and the GTA. New units are added here as they become available — contact us to be notified.</p>
     </div>
   </section>
 
@@ -1632,7 +1641,7 @@ body.menu-open {
             </div>
           </div>
           <div class="listing-body">
-            <span class="listing-badge available">Available</span>
+            <span class="listing-badge leased">Leased</span>
             <div class="listing-address">3025 The Credit Woodlands</div>
             <div class="listing-unit">Mississauga, ON · L5C 2V3</div>
             <div class="listing-details">
@@ -1650,8 +1659,8 @@ body.menu-open {
               </div>
             </div>
             <div class="listing-rent">$2,100 <span>/ month</span></div>
-            <div class="listing-avail">Available: Immediately</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+            <div class="listing-avail">Leased — not accepting applications at this time.</div>
+            <button class="listing-cta leased-btn" type="button" disabled aria-disabled="true">Leased</button>
           </div>
         </div>
         <!-- LISTING 1 — END -->
@@ -1687,7 +1696,7 @@ body.menu-open {
             </div>
           </div>
           <div class="listing-body">
-            <span class="listing-badge available">Available</span>
+            <span class="listing-badge leased">Leased</span>
             <div class="listing-address">5 Buttermill Ave</div>
             <div class="listing-unit">Vaughan, ON · L4K 0J5</div>
             <div class="listing-details">
@@ -1705,8 +1714,8 @@ body.menu-open {
               </div>
             </div>
             <div class="listing-rent">$2,100 <span>/ month</span></div>
-            <div class="listing-avail">Available: June 1, 2026</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+            <div class="listing-avail">Leased — not accepting applications at this time.</div>
+            <button class="listing-cta leased-btn" type="button" disabled aria-disabled="true">Leased</button>
           </div>
         </div>
         <!-- LISTING 2 — END -->
@@ -1753,7 +1762,7 @@ body.menu-open {
             </div>
           </div>
           <div class="listing-body">
-            <span class="listing-badge available">Available</span>
+            <span class="listing-badge leased">Leased</span>
             <div class="listing-address">3408 Mosley Gate</div>
             <div class="listing-unit">Oakville, ON · L6H 0Z1</div>
             <div class="listing-details">
@@ -1771,8 +1780,8 @@ body.menu-open {
               </div>
             </div>
             <div class="listing-rent">$2,200 <span>/ month</span></div>
-            <div class="listing-avail">Available: June 1, 2026</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+            <div class="listing-avail">Leased — not accepting applications at this time.</div>
+            <button class="listing-cta leased-btn" type="button" disabled aria-disabled="true">Leased</button>
           </div>
         </div>
         <!-- LISTING 3 — END -->
@@ -1804,7 +1813,7 @@ body.menu-open {
             </div>
           </div>
           <div class="listing-body">
-            <span class="listing-badge available">Available</span>
+            <span class="listing-badge leased">Leased</span>
             <div class="listing-address">527 Rossellini Dr</div>
             <div class="listing-unit">Mississauga, Ontario</div>
             <div class="listing-details">
@@ -1822,8 +1831,8 @@ body.menu-open {
               </div>
             </div>
             <div class="listing-rent">$1,699 <span>/ month</span></div>
-            <div class="listing-avail">Available: Immediately</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+            <div class="listing-avail">Leased — not accepting applications at this time.</div>
+            <button class="listing-cta leased-btn" type="button" disabled aria-disabled="true">Leased</button>
           </div>
         </div>
 
@@ -1882,7 +1891,7 @@ body.menu-open {
             </div>
           </div>
           <div class="listing-body">
-            <span class="listing-badge available">Available</span>
+            <span class="listing-badge leased">Leased</span>
             <div class="listing-address">3280 Camberwell Dr</div>
             <div class="listing-unit">Mississauga, Ontario · L5M 6T2</div>
             <div class="listing-details">
@@ -1900,8 +1909,8 @@ body.menu-open {
               </div>
             </div>
             <div class="listing-rent">$3,600 <span>/ month</span></div>
-            <div class="listing-avail">Available: June 1st</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+            <div class="listing-avail">Leased — not accepting applications at this time.</div>
+            <button class="listing-cta leased-btn" type="button" disabled aria-disabled="true">Leased</button>
           </div>
         </div>
 
@@ -1940,7 +1949,7 @@ body.menu-open {
             </div>
           </div>
           <div class="listing-body">
-            <span class="listing-badge available">Available</span>
+            <span class="listing-badge leased">Leased</span>
             <div class="listing-address">11 Chrysler Cres</div>
             <div class="listing-unit">Scarborough, ON · M1R 2L9</div>
             <div class="listing-details">
@@ -1958,8 +1967,8 @@ body.menu-open {
               </div>
             </div>
             <div class="listing-rent">$1,750 <span>/ month</span></div>
-            <div class="listing-avail">Available: May 1st</div>
-            <button class="listing-cta" onclick="bookACall()">Book a Viewing</button>
+            <div class="listing-avail">Leased — not accepting applications at this time.</div>
+            <button class="listing-cta leased-btn" type="button" disabled aria-disabled="true">Leased</button>
           </div>
         </div>
 
@@ -2386,7 +2395,7 @@ body.menu-open {
   <section class="section-py application-wrap">
     <div class="container" style="max-width:900px">
       <div class="application-panel">
-        <form id="tenantApplicationForm" action="" method="POST" enctype="multipart/form-data" onsubmit="handleTenantApplicationSubmit(event)">
+        <form id="tenantApplicationForm" action="" method="POST" onsubmit="handleTenantApplicationSubmit(event)">
           <h3 style="font-size:18px;font-weight:800;margin:0 0 12px;color:var(--text-dark)">Address of Rental Property</h3>
           <div class="form-row">
             <div class="form-group">
@@ -2503,9 +2512,9 @@ body.menu-open {
           </div>
 
           <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Upload Documents</h3>
-          <div class="form-group"><label>Primary Tenants Documents (Employment/Income Proof) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="primary_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
-          <div class="form-group"><label>Primary Tenants Documents (Government ID) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="primary_government_id" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
-          <div class="form-group"><label>Primary Tenants Documents (Credit Report) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="primary_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+          <div class="form-group"><label>Primary Tenants Documents (Employment/Income Proof) <span class="req">*</span> (Max. 4 MB)</label><input type="file" name="primary_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+          <div class="form-group"><label>Primary Tenants Documents (Government ID) <span class="req">*</span> (Max. 4 MB)</label><input type="file" name="primary_government_id" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
+          <div class="form-group"><label>Primary Tenants Documents (Credit Report) <span class="req">*</span> (Max. 4 MB)</label><input type="file" name="primary_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>
 
           <h3 style="font-size:18px;font-weight:800;margin:8px 0 12px;color:var(--text-dark)">Additional Tenants?</h3>
           <div class="form-group">
@@ -3000,11 +3009,55 @@ function handleHeroFormSubmit(e) {
   });
 }
 
+function tenantApplicationSubmitErrorMessage(res, data) {
+  if (data && data.errors && data.errors.length) {
+    return data.errors.map(function(err) { return err.message; }).join(' ');
+  }
+  if (data && data.error) return String(data.error);
+  if (res && res.status === 413) {
+    return 'Your documents are too large to send. Please use files under 4 MB each, or email info@northvalepm.com.';
+  }
+  return 'Something went wrong. Please email us at info@northvalepm.com';
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function() { resolve(reader.result); };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function prepareTenantApplicationFormData(form) {
+  var fd = new FormData(form);
+  var fileInputs = form.querySelectorAll('input[type="file"]');
+  var tasks = [];
+  fileInputs.forEach(function(input) {
+    if (!input.name) return;
+    fd.delete(input.name);
+    if (!input.files || !input.files[0]) return;
+    var file = input.files[0];
+    tasks.push(readFileAsDataUrl(file).then(function(dataUrl) {
+      fd.append(input.name + '_filename', file.name);
+      fd.append(input.name + '_mimetype', file.type || 'application/octet-stream');
+      fd.append(input.name + '_data', dataUrl);
+    }));
+  });
+  var applicantEmail = form.querySelector('[name="email"]');
+  var applicantFirst = form.querySelector('[name="first_name"]');
+  var subjectName = applicantFirst && applicantFirst.value ? applicantFirst.value.trim() : 'Applicant';
+  fd.set('_subject', 'New Tenant Application — ' + subjectName);
+  fd.set('_form', 'Tenant Application');
+  if (applicantEmail && applicantEmail.value) fd.set('_replyto', applicantEmail.value);
+  return Promise.all(tasks).then(function() { return fd; });
+}
+
 function handleTenantApplicationSubmit(e) {
   e.preventDefault();
   var btn = document.getElementById('tenantAppSubmitBtn');
   var msg = document.getElementById('tenantAppMsg');
-  var oversized = validateApplicationFileSizes(e.target, 5);
+  var oversized = validateApplicationFileSizes(e.target, 4);
   if (oversized) {
     msg.style.display = 'block';
     msg.style.color = '#c0392b';
@@ -3024,23 +3077,31 @@ function handleTenantApplicationSubmit(e) {
   }
   btn.disabled = true;
   btn.textContent = 'SENDING...';
-  fetch(e.target.action, {
-    method: 'POST',
-    body: new FormData(e.target),
-    headers: { 'Accept': 'application/json' }
-  }).then(function(res) {
-    if (res.ok) {
-      msg.style.display = 'block';
-      msg.style.color = '#14454F';
-      msg.textContent = '✓ Application submitted. Our team will contact you shortly.';
-      e.target.reset();
-      clearApplicationSignature();
-      renderAdditionalTenantSections();
-      btn.textContent = 'Submit Application';
-      btn.disabled = false;
-    } else {
-      throw new Error('Network error');
-    }
+  prepareTenantApplicationFormData(e.target).then(function(payload) {
+    return fetch(e.target.action, {
+      method: 'POST',
+      body: payload,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      return res.json().catch(function() { return null; }).then(function(data) {
+        if (res.ok) {
+          msg.style.display = 'block';
+          msg.style.color = '#14454F';
+          msg.textContent = '✓ Application submitted. Our team will contact you shortly.';
+          e.target.reset();
+          clearApplicationSignature();
+          renderAdditionalTenantSections();
+          btn.textContent = 'Submit Application';
+          btn.disabled = false;
+          return;
+        }
+        msg.style.display = 'block';
+        msg.style.color = '#c0392b';
+        msg.textContent = tenantApplicationSubmitErrorMessage(res, data);
+        btn.textContent = 'Submit Application';
+        btn.disabled = false;
+      });
+    });
   }).catch(function() {
     msg.style.display = 'block';
     msg.style.color = '#c0392b';
@@ -3096,11 +3157,11 @@ function renderAdditionalTenantSections() {
       +   '</div>'
       +   '<h4 style="margin:8px 0 10px;font-size:14px;font-weight:800;color:var(--white)">Upload documents (Additional Tenants)</h4>'
       +   '<div class="form-row">'
-      +     '<div class="form-group"><label>Primary Tenants Documents (Government ID) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="additional_' + i + '_gov_id" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
-      +     '<div class="form-group"><label>Primary Tenants Documents (Employment/Income Proof) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="additional_' + i + '_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
+      +     '<div class="form-group"><label>Primary Tenants Documents (Government ID) <span class="req">*</span> (Max. 4 MB)</label><input type="file" name="additional_' + i + '_gov_id" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
+      +     '<div class="form-group"><label>Primary Tenants Documents (Employment/Income Proof) <span class="req">*</span> (Max. 4 MB)</label><input type="file" name="additional_' + i + '_income_proof" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
       +   '</div>'
       +   '<div class="form-row">'
-      +     '<div class="form-group"><label>Primary Tenants Documents (Credit Report / Screenshot) <span class="req">*</span> (Max. 5 MB)</label><input type="file" name="additional_' + i + '_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
+      +     '<div class="form-group"><label>Primary Tenants Documents (Credit Report / Screenshot) <span class="req">*</span> (Max. 4 MB)</label><input type="file" name="additional_' + i + '_credit_report" accept=".pdf,.jpg,.jpeg,.png,.webp" required></div>'
       +     '<div class="form-group"><label>Credit Score</label><select name="additional_' + i + '_credit_score"><option value="">Select</option><option>300 - 559 (Poor)</option><option>560 - 659 (Fair)</option><option>660 - 724 (Good)</option><option>725 - 759 (Very Good)</option><option>760+ (Excellent)</option><option>New to Canada</option></select></div>'
       +   '</div>'
       + '</div>';
@@ -3117,7 +3178,7 @@ function validateApplicationFileSizes(form, maxSizeMb) {
     if (input.files[0].size > maxBytes) {
       var label = input.closest('.form-group') && input.closest('.form-group').querySelector('label');
       var fieldName = label ? label.textContent.replace('*', '').trim() : 'A file';
-      return fieldName + ' exceeds the 5 MB limit. Please upload a smaller file.';
+      return fieldName + ' exceeds the 4 MB limit. Please upload a smaller file.';
     }
   }
   return '';
